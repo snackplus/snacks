@@ -64,7 +64,7 @@ snackController.getSnacks = (req, res, next) => {
     db.query(q.text)
     .then(data => {
         console.log("========== getSnacks query complete ==========");
-        res.locals.messages = data.rows;
+        res.locals.snacks = data.rows;
         return next();
     })
     .catch(err => {
