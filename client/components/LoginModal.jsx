@@ -19,11 +19,42 @@ export default function LoginModal() {
 
   const login = () => {
     const username = document.getElementById("username"), password = document.getElementById("password");
-    if (username.value === '') setInfo()
+    if (username.value === '') return setInfo('No Username!');
+    if (password.value === '') return setInfo('No Password!');
+
+    fetch('/user/login',{
+      method: 'POST',
+      headers: { 'Content-Type': 'Application/JSON' },
+      body: JSON.stringify({ username: username.value, password: password.value })
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        if (data.status === 'noUser') return setInfo('Username not found!');
+        if (data.status === 'wrongPassword') return setInfo('Wrong Password!');
+        setInfo(null)
+        setLoggedIn(true);
+    })
   }
 
   const signup = () => {
     const username = document.getElementById("username"), password = document.getElementById("password"), confPassword = document.getElementById("confPassword");
+    if (username.value === '') return setInfo('No Username!');
+    if (password.value === '') return setInfo('No Password!');
+    if (confPassword.value === '') return setInfo('Please confirm your password.');
+
+    if (password.value !== confPassword.value) return setInfo('Passwords don\'t match.'); password.value = ''; confPassword.value = '';
+
+    fetch('/user/signup',{
+      method: 'POST',
+      headers: { 'Content-Type': 'Application/JSON' },
+      body: JSON.stringify({ username: username.value, password: password.value })
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        if (data.status === 'userExists') return setInfo('Username already exists.');
+        setInfo(null)
+        setLoggedIn(true);
+    })
   }
 
   let signInOut = [<div>
