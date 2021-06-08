@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import MainPage from './MainPage.jsx'
-import { LoggedInProvider } from './SnackContext'
+import MainContainer from './MainContainer.jsx'
+import { LoggedInProvider } from './SnackContext.jsx'
 
 
 export default function App() {
   return(
     <LoggedInProvider>
 
-      <MainPage />
+      <MainContainer />
 
     </LoggedInProvider>
   )
