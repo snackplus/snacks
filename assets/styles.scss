@@ -1,4 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+
+
 body{
-  background-color: black;
+  background-color: #FFFAF1;
+  color: black;
+  font-family: Staatliches, cursive;
+}
+
+button {
+  background-color: rgb(167, 58, 58);
   color: white;
+  border-radius: 5px;
+  font-family: Staatliches, cursive;
+  padding: 6px;
 }
