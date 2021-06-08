@@ -4,6 +4,9 @@ import React, { useContext, useState } from 'react'
 const LoggedInContext = React.createContext()
 const SetLoggedInContext = React.createContext()
 
+const SnackArrayContext = React.createContext()
+const SetSnackArrayContext = React.createContext()
+
 //make two custom hooks here that exports the above context
 export function useLoggedInContext() {
   return useContext(LoggedInContext)
@@ -13,20 +16,40 @@ export function useSetLoggedInContext() {
   return useContext(SetLoggedInContext)
 }
 
+//two custom Hooks
+export function useSnackArrayContext() {
+  return useContext(SnackArrayContext)
+}
+export function setSnackArrayContext(item) {
+  return useContext(SetSnackArrayContext)
+}
+
 //provides exportable context?
 export function LoggedInProvider ({ children }) {
   //creates the state
   const [loggedIn, setIsLoggedIn] = useState(false)
+  const [snackArray, setSnackArray] = useState(['hi Nikhil', 'from logz'])
+
   //updates the state
   function toggleLoggedIn() {
     setIsLoggedIn(isLoggedIn => !isLoggedIn) 
   };
+
+  function fillSnackArray(item) {
+    setSnackArray(newArray => [...item])
+  }
   return (
-    <LoggedInContext.Provider value={loggedIn}>
-      <SetLoggedInContext.Provider value={toggleLoggedIn}>
-        {children}
-      </SetLoggedInContext.Provider>
-    </LoggedInContext.Provider>
+    <SnackArrayContext.Provider value={snackArray}>
+      <SetSnackArrayContext.Provider value={fillSnackArray}>
+
+        <LoggedInContext.Provider value={loggedIn}>
+          <SetLoggedInContext.Provider value={toggleLoggedIn}>
+            {children}
+          </SetLoggedInContext.Provider>
+        </LoggedInContext.Provider>
+
+      </SetSnackArrayContext.Provider>
+    </SnackArrayContext.Provider>    
   )
 
 }
