@@ -3,8 +3,8 @@ const expressUser = require('express');
 const routerUser = expressUser.Router();
 
 //** Path to file controllers**//
-const userControllerUser = require("../controllers/userController.ts");
-const cookieControllerUser = require("../controllers/cookieController.ts");
+const userControllerUser = require("../controllers/userController.js");
+const cookieControllerUser = require("../controllers/cookieController.js");
 
 
 routerUser.post('/signup', userControllerUser.createUser, cookieControllerUser.createSessionCookie, (req, res) => {
