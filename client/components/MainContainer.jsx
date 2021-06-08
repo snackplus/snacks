@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { useLoggedInContext, useSetLoggedInContext } from './SnackContext'
-
+import NavBar from './NavBar.jsx'
+import { useLoggedInContext, useSetLoggedInContext } from './SnackContext.jsx'
+import SnackBoxContainer from './SnackBoxContainer.jsx'
 
 export default function MainPage() {
 
@@ -15,8 +15,10 @@ export default function MainPage() {
   }
   return(
     <div>
+      <NavBar />
       <div>This is the Main Page and you are logged in: {string} </div>
       <button onClick={setLoggedIn}>Click it</button>
+      <SnackBoxContainer />
     </div>
     
   )
