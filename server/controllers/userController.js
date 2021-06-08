@@ -4,47 +4,38 @@ import * as bcrypt from 'bcryptjs';
 
 const userController = {
     createUser(req, res, next) {
-        console.log('in createUser');
-        console.log('checking if user exists');
         const
             queryString1 = `
-      SELECT username FROM users
-      WHERE username=$1`,
+                SELECT username FROM users
+                WHERE username=$1`,
             queryArgs1 = [req.body.username];
         dbUser.query(queryString1, queryArgs1, (err, user) => {
-            console.log(user.rows)
-            if (user.rows.length !== 0) return res.status(400).json('userExists');
-            console.log('no duplicate, now creating user');
+            if (user.rows.length !== 0) return res.status(400).json({ status: 'userExists'});
             const salt = bcrypt.genSaltSync(10);
-            console.log(req.body.password);
             const hash = bcrypt.hashSync(req.body.password, salt);
-            console.log(hash);
             const
                 queryString2 = `
-        INSERT INTO users (username, password)
-        VALUES ($1,$2) RETURNING *`,
+                    INSERT INTO users (username, password)
+                    VALUES ($1,$2) RETURNING *`,
                 queryArgs2 = [req.body.username, hash];
             dbUser.query(queryString2, queryArgs2, (err, user) => {
                 if (err) return next({ log: err });
-                console.log('finished query:', user.rows[0]);
                 res.locals.userID = user.rows[0]['_id'];
-                console.log(res.locals.userID);
                 return next();
             });
         })
     },
-    //midleware to verify that it's a  valid user after logging in
+
     verifyUser(req, res, next) {
-        //creating a query to grab the username from the req body and checking in the db if it is a valid username
         const
             queryString = `
-    SELECT * FROM users
-    WHERE username=$1`,
+                SELECT * FROM users
+                WHERE username=$1`,
             queryArgs = [req.body.username];
 
         dbUser.query(queryString, queryArgs, (err, user) => {
             //if our returned query has nothing in the rows key then db did not find the user and it is not a valid user
-            if (user.rows.length === 0) return res.status(400).json('unkUser');
+            if (user.rows.length === 0) return res.status(400).json('noUser');
             //if the username is a username in the db then check that password the user entered matches the password in the db for that username
             bcrypt.compare(req.body.password, user.rows[0].password, (err, isMatch) => {
                 if (err) console.log('Error in bcrypt hashing, verifyUser: ', err)
