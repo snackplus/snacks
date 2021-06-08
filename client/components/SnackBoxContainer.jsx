@@ -13,8 +13,10 @@ export default function SnackBoxContainer () {
 
   return (
     <div>
-      <h3>This is SnackBox Container</h3>
-      {boxes}
+      <div>
+        <h3>This is SnackBox Container</h3>
+        {boxes}
+      </div>
     </div>
     
   )

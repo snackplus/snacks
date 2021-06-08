@@ -29,11 +29,12 @@ All components:
             xSign Up Form 
     Logo Container (conditional on signed in)
         Logo
-    Seach Container
-        Search Input?
-        Filters
-    Snack View Container (either default return or user's snacks with their provided filters)
-        Snackbox
-            Image
-            Stats
-            Edit Button?
+    Snack View Container (Stateful: fetch return (snack data))
+        Search Container (receives snack data state, function for fetch)
+          Search Input
+          Filters
+        SnackBoxContainer
+        Snackbox (pass props to each box)
+          Image
+          Stats
+          Edit Button?

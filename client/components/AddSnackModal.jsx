@@ -6,14 +6,32 @@ import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 //needs to be changed to redirect to login modal if user is not logged in.
 //if they are logged in works as it does currently
 
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));  
+
 export default function AddSnackModal () {
   const isLoggedIn = useLoggedInContext()
   const [snackModalIsOpen, setSnackModalIsOpen] = useState(false);
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = useState(2);
+  const [type, setType] = useState('')
+  const classes = useStyles()
 
   const customStyles = {
     content : {
@@ -27,6 +45,8 @@ export default function AddSnackModal () {
     }
   };
 
+
+
   const setModalIsOpenToTrue = () => {
     setSnackModalIsOpen(true)
   }
@@ -35,8 +55,31 @@ export default function AddSnackModal () {
     setSnackModalIsOpen(false)
   }
 
+  function sendNewSnack() {
+  const name = document.getElementById('snackName').value
+  const brand = ''
+  //name, brand name, origin, type, flavor profile(spicy, sweet, salty), rating, img 
+  }
+
+  const handleChange = (event) => {
+    setType(event.target.value);
+  };
+
+  // const useStyles = makeStyles((theme) => ({
+  //   formControl: {
+  //     margin: theme.spacing(1),
+  //     minWidth: 120,
+  //   },
+  //   selectEmpty: {
+  //     marginTop: theme.spacing(2),
+  //   },
+  // }));
+  
+  
+
+
   return (
-    <>
+    <div>
      <button onClick={setModalIsOpenToTrue}>Add Snack</button>
      <Modal style={customStyles}
         isOpen={snackModalIsOpen}
@@ -45,8 +88,27 @@ export default function AddSnackModal () {
         >
         <div className="addSnackContainer">
           <button onClick={setModalIsOpenToFalse}>x</button>
-          <input className='snackName' placeholder='Snack Name' />
-          <input className='snackImage' placeholder='Snack Image png/jpeg' />
+          <input id='snackName' placeholder='Snack Name' />
+          <input id='brandName' placeholder='brand' />
+          <input id='origin' placeholder='origin' />
+          <input id='type' placeholder='type' />
+
+          <FormControl className="flavorProfileSelector">
+            <InputLabel id="demo-simple-select-label">Flavor</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={type}
+              onChange={handleChange}
+            >
+              <MenuItem value={'Sweet'}>Sweet</MenuItem>
+              <MenuItem value={'Salty'}>Salty</MenuItem>
+              <MenuItem value={'Healthy'}>Healthy</MenuItem>
+            </Select>
+          </FormControl>
+          
+
+          <input id='snackImage' placeholder='Snack Image png/jpeg' />
           <Box component="fieldset" mb={3} borderColor="transparent">
             <Typography component="legend">Controlled</Typography>
             <Rating
@@ -63,8 +125,7 @@ export default function AddSnackModal () {
         </div>
       
      </Modal>
-   </>
-
+   </div>
 
   )
 }

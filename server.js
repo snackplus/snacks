@@ -23,18 +23,18 @@ app.use('*', (req, res) => {
   return res.status(404).send('Not Found');
 });
 //Global Error Handler
-app.use((err, req, res, next) => {
-  const defaultError = {
-    log: 'Unknown Express middleware error occured',
-    status: 500,
-    message: {error: 'Oops, something went wrong!'}
-  };
+// app.use((err, req, res, next) => {
+//   const defaultError = {
+//     log: 'Unknown Express middleware error occured',
+//     status: 500,
+//     message: {error: 'Oops, something went wrong!'}
+//   };
 
-  err = Object.assign(defaultError, err);
+//   err = Object.assign(defaultError, err);
 
-  console.log(err.log);//this gets logged in the server
-  return res.status(err.status).json(err.message);
-});
+//   console.log(err.log);//this gets logged in the server
+//   return res.status(err.status).json(err.message);
+// });
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
