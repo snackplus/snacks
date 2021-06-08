@@ -24,24 +24,25 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-}));  
+}));
 
-export default function AddSnackModal () {
+export default function AddSnackModal() {
   const isLoggedIn = useLoggedInContext()
   const [snackModalIsOpen, setSnackModalIsOpen] = useState(false);
-  const [value, setValue] = useState(2);
+  const [stars, setStars] = useState(2);
+  const [flavor, setFlavor] = useState('')
   const [type, setType] = useState('')
   const classes = useStyles()
 
   const customStyles = {
-    content : {
-      top                   : '50%',
-      left                  : '50%',
-      right                 : 'auto',
-      bottom                : 'auto',
-      marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)',
-      backgroundColor       : '#FFFAF1'
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      backgroundColor: '#FFFAF1'
     }
   };
 
@@ -50,20 +51,28 @@ export default function AddSnackModal () {
   const setModalIsOpenToTrue = () => {
     setSnackModalIsOpen(true)
   }
- 
-  const setModalIsOpenToFalse =()=>{
+
+  const setModalIsOpenToFalse = () => {
     setSnackModalIsOpen(false)
   }
 
   function sendNewSnack() {
-  const name = document.getElementById('snackName').value
-  const brand = ''
-  //name, brand name, origin, type, flavor profile(spicy, sweet, salty), rating, img 
+    const name = document.getElementById('snackName').value
+    const brand = document.getElementById('brandName').value
+    const imgUrl = document.getElementById('snackImage').value
+    const origin = document.getElementById('origin').value
+    const flavor = document.getElementById('flavorProfile').value
+    const type = document.getElementById('type').value
+
   }
 
-  const handleChange = (event) => {
-    setType(event.target.value);
+  const flavorChange = (event) => {
+    setFlavor(event.target.value);
   };
+
+  const typeChange = (event) => {
+    setType(event.target.value)
+  }
 
   // const useStyles = makeStyles((theme) => ({
   //   formControl: {
@@ -74,58 +83,82 @@ export default function AddSnackModal () {
   //     marginTop: theme.spacing(2),
   //   },
   // }));
-  
-  
+
+
 
 
   return (
     <div>
-     <button onClick={setModalIsOpenToTrue}>Add Snack</button>
-     <Modal style={customStyles}
+      <button onClick={setModalIsOpenToTrue}>Add Snack</button>
+      <Modal style={customStyles}
         isOpen={snackModalIsOpen}
         onRequestClose={setModalIsOpenToFalse}
         appElement={document.getElementById('root')} //this is where the modal gets hung (is in relationto)
-        >
+      >
         <div className="addSnackContainer">
           <button onClick={setModalIsOpenToFalse}>x</button>
+
+          <input id='snackImage' placeholder='Snack Image png/jpeg' />
           <input id='snackName' placeholder='Snack Name' />
           <input id='brandName' placeholder='brand' />
           <input id='origin' placeholder='origin' />
-          <input id='type' placeholder='type' />
 
+          {/* Snack flavor drop down */}
           <FormControl className="flavorProfileSelector">
-            <InputLabel id="demo-simple-select-label">Flavor</InputLabel>
+            <InputLabel id="flavorProfile">Flavor</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={flavor}
+              onChange={flavorChange}
+            >
+              <MenuItem value={'Sweet'}>Sweet</MenuItem>
+              <MenuItem value={'Salty'}>Salty</MenuItem>
+              <MenuItem value={'Spicy'}>Spicy</MenuItem>
+              <MenuItem value={'Sour'}>Sour</MenuItem>
+              <MenuItem value={'Bitter'}>Bitter</MenuItem>
+            </Select>
+          </FormControl>
+
+
+          {/* Snack Type drop down */}
+          <FormControl className="snackType">
+            <InputLabel id="demo-simple-select-label">Type</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={type}
-              onChange={handleChange}
+              onChange={typeChange}
             >
-              <MenuItem value={'Sweet'}>Sweet</MenuItem>
-              <MenuItem value={'Salty'}>Salty</MenuItem>
-              <MenuItem value={'Healthy'}>Healthy</MenuItem>
+              <MenuItem value={'Chips'}>Chips</MenuItem>
+              <MenuItem value={'Candy'}>Candy</MenuItem>
+              <MenuItem value={'Jake'}>Jake</MenuItem>
+              <MenuItem value={'Fruit'}>Fruit</MenuItem>
+              <MenuItem value={'FruitSnacks'}>FruitSnacks</MenuItem>
+              <MenuItem value={'Tacos'}>Tacos</MenuItem>
+
             </Select>
           </FormControl>
-          
 
-          <input id='snackImage' placeholder='Snack Image png/jpeg' />
+          {/* //name, brand name, img, origin, type, flavor profile(spicy, sweet, salty), rating,   */}
+
           <Box component="fieldset" mb={3} borderColor="transparent">
             <Typography component="legend">Controlled</Typography>
             <Rating
               name="simple-controlled"
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
+              value={stars}
+              onChange={(event, newStars) => {
+                setStars(newStars);
               }}
             />
           </Box>
           <input className='writtenReview' placeholder='Review' />
           <input className='country' placeholder='Country of Origin' />
-          <button onClick={()=>handleSubmission()}>Submit New Snack!</button>
+          <button onClick={() => handleSubmission()}>Submit New Snack!</button>
         </div>
-      
-     </Modal>
-   </div>
+
+      </Modal>
+    </div>
 
   )
 }
