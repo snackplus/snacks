@@ -12,17 +12,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //** Route Imports **//
-const userRouter = require("./routes/userRouter.js");
-const snackRouter = require("./routes/snackRouter.js");
+const userRouter = require("./server/routes/userRouter.js");
+const snackRouter = require("./server/routes/snackRouter.js");
 console.log('past routers')
 
 //** Serve Static Files and Root **//
-app.use('/assets', express.static(path.resolve(__dirname, '../assets')));
-app.use('/build', express.static(path.resolve(__dirname, '../build')));
+app.use('/assets', express.static(path.resolve(__dirname, './assets')));
+app.use('/build', express.static(path.resolve(__dirname, './build')));
 app.get('/', (req, res) => {
   console.log('serving main file')
   // res.set('Content-Type', 'text/HTML;');
-  return res.status(200).sendFile(path.join(__dirname + '../client/index.html'));
+  return res.status(200).sendFile(path.join(__dirname + '/index.html'));
 });
 
 
@@ -61,14 +61,6 @@ app.get('/', (req, res) => {
 //user opens replies list of a comment
 //('/openReplies', replyController.getReplies)
 //res.locals.replies
-
-
-
-//unhandled endpoints
-app.use('*', (req, res) => {
-  return res.status(404).send('Not Found');
-});
-//Global Error Handler
 
 //** Functionality Routes **//
 app.use('/user', userRouter);

@@ -1,4 +1,4 @@
-const dbCookie = require("../models/userModel");
+const dbCookie = require("../models/DatabaseModel");
 
 const cookieController = {
     //middleware to create a cookie and add that cookie to user
@@ -9,7 +9,7 @@ const cookieController = {
 
         const newSSID = () => {
             const SSID = Math.floor(Math.random() * 1000000000000000);
-            dbCookie.query(`SELECT ssid FROM sessions`)
+            dbCookie.query(`SELECT session_id FROM sessions`)
                 .then(data => {
                     console.log(data.rows);
                     for (let session of data.rows) {
@@ -25,7 +25,7 @@ const cookieController = {
             res.cookie('SSID', SSID, { httpOnly: false, maxAge: 604800000 })
 
             const queryString =
-                `INSERT INTO sessions(ssid, uuid)
+                `INSERT INTO sessions(session_id, username)
                 VALUES ($1, $2)`,
                 queryArgs = [SSID, username];
 
@@ -46,8 +46,8 @@ const cookieController = {
         const { SSID } = req.cookies;
 
         const queryString =
-            `SELECT ssid FROM sessions
-            WHERE ssid = $1`,
+            `SELECT session_id FROM sessions
+            WHERE session_id = $1`,
             queryArgs = [SSID];
 
         console.log('checking for session in db');
@@ -69,7 +69,7 @@ const cookieController = {
 
         const queryString =
             `DELETE FROM sessions 
-            WHERE ssid = $1`,
+            WHERE session_id = $1`,
             queryArgs = [SSID];
 
         console.log('checking for session in db');
