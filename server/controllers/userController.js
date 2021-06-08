@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 /* Path to databse*/
-const dbUser = require('../models/userModel');
+const dbUser = require('../models/DatabaseModel');
 
 const userController = {
     createUser(req, res, next) {
@@ -15,7 +15,7 @@ const userController = {
             const hash = bcrypt.hashSync(req.body.password, salt);
             const
                 queryString2 = `
-                    INSERT INTO users (username, password)
+                    INSERT INTO users (username, hashed_password)
                     VALUES ($1,$2) RETURNING *`,
                 queryArgs2 = [req.body.username, hash];
             dbUser.query(queryString2, queryArgs2, (err, user) => {
