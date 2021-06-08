@@ -18,7 +18,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname + '/index.html'))
 })
 
-//unhdandled endpoints
+
+
+//unhandled endpoints
 app.use('*', (req, res) => {
   return res.status(404).send('Not Found');
 });
