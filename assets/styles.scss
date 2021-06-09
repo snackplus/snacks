@@ -76,6 +76,10 @@ img {
   justify-content: center;
   align-items: center;
 }
+.Comments {
+  height: 120px;
+  overflow: auto;
+}
 
 #loginButton {
   position: relative;
@@ -94,4 +98,5 @@ align-items: center;
 font-size: 40px;
 text-shadow: 2px 2px 5px rgb(181, 88, 88);
 font-style: italic;
+color: rgb(222, 96, 96)
 }
