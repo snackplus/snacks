@@ -90,13 +90,15 @@ export default function DetailsModal(props) {
           <div>Rating: {props.box.rating}</div>
           <div>Origin: {props.box.origin}</div>
           <div>Flavor: {props.box.flavor_profile}</div>
+          <div>{stars}</div>
           <Box component="fieldset" mb={3} borderColor="transparent">
-            <Typography component="legend"></Typography>
-            <Rating name="simple-controlled"
+            <Rating
+              name="simple-controlled"
               value={stars}
-              onChange={(event, newStars) => {
-                setStars(newStars);
-              }} />
+              onChange={(event, newValue) => {
+                setStars(newValue);
+              }}
+            />
           </Box>
           <input
             id={props.box.snack_id}
