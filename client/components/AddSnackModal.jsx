@@ -61,9 +61,26 @@ export default function AddSnackModal() {
     const brand = document.getElementById('brandName').value
     const imgUrl = document.getElementById('snackImage').value
     const origin = document.getElementById('origin').value
-    const flavor = document.getElementById('flavorProfile').value
-    const type = document.getElementById('type').value
+    if (name === '' || brand === '' || imgUrl === '' || origin === '' || flavor === '' || type === '') return;
+    const reqObj = {
+      method: 'POST',
+      headers: { 'Content-Type': 'Application/JSON' },
+      body: JSON.stringify({
+        snack_name: name,
+        brand_name: brand,
+        origin: origin,
+        type: type,
+        flavor_profile: flavor,
+        img: imgUrl
+      })
+    }
 
+    fetch('/snack/add', reqObj)
+      .then(res => res.json())
+      .then(snacks => {
+        //can we get back a single snack?
+        //then add the returned new item and we'll add that to the array in
+      })
   }
 
   const flavorChange = (event) => {
@@ -84,8 +101,18 @@ export default function AddSnackModal() {
   //   },
   // }));
 
+//   CREATE TABLE Snackslist (
+//     snack_id SERIAL PRIMARY KEY,
+//     snack_name VARCHAR(255),
+//     brand_name VARCHAR(255),
+//     origin VARCHAR(255),
+//     type VARCHAR(255),
+//     flavor_profile VARCHAR(255),
+//     img VARCHAR(255)
+// );
 
 
+//Need to change order of inputs
 
   return (
     <div>
@@ -99,8 +126,8 @@ export default function AddSnackModal() {
           <button onClick={setModalIsOpenToFalse}>x</button>
 
           <input id='snackImage' placeholder='Snack Image png/jpeg' />
-          <input id='snackName' placeholder='Snack Name' />
           <input id='brandName' placeholder='brand' />
+          <input id='snackName' placeholder='Snack Name' />
           <input id='origin' placeholder='origin' />
 
           {/* Snack flavor drop down */}
@@ -152,9 +179,7 @@ export default function AddSnackModal() {
               }}
             />
           </Box>
-          <input className='writtenReview' placeholder='Review' />
-          <input className='country' placeholder='Country of Origin' />
-          <button onClick={() => handleSubmission()}>Submit New Snack!</button>
+          <button onClick={() => sendNewSnack()}>Submit New Snack!</button>
         </div>
 
       </Modal>

@@ -6,11 +6,11 @@ const commentController = {};
 commentController.addComment = (req, res, next) => {
     console.log("========== commentController addComment ==========");
     
-    const { snack_id, user_id, rating, comment, comment_id } = req.body;
+    const { snack_id, user_id, rating, comment} = req.body;
 
     let q = {
-        text: `INSERT INTO Comments VALUES ($1, $2, $3, $4, $5)`,
-        values: [snack_id, user_id, rating, comment, comment_id]
+        text: `INSERT INTO Comments VALUES ($1, $2, $3, $4, DEFAULT)`,
+        values: [snack_id, user_id, rating, comment]
     }
 
     db.query(q)
@@ -54,7 +54,7 @@ commentController.delComment = (req, res, next) => {
 
 commentController.getComments = (req, res, next) => {
     let q = {
-        text: `SELECT * FROM Snacklist`
+        text: `SELECT * FROM Comments`
     }
 
     db.query(q.text)

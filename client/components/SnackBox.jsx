@@ -4,26 +4,20 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 
-export default function SnackBox () {
+export default function SnackBox (props) {
 
   return (
-    <div>
-      {/* image, name, average star rating, number of reviews */}
-      <h4>IMAGE</h4>
-      <h4>NAME</h4>
-      {/* <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Controlled</Typography>
-        <Rating
-          name="simple-controlled"
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        />  
-      </Box> */}
-      <h4>Number of Review</h4>
+    <div key={props.key} id={props.id} className="snackBox">
+        <a href={props.image}></a>
+        <br/>
+        <h3>{props.brand}</h3>
+        {/* image, name, average star rating, number of reviews */}
+        <h3>{props.name}</h3>
+        <h4>{props.origin}</h4>
       
     </div>
+      
+
 
   )
 }
