@@ -31,8 +31,8 @@ export function LoggedInProvider ({ children }) {
   const [snackArray, setSnackArray] = useState(null)
 
   //updates the state
-  function toggleLoggedIn() {
-    setIsLoggedIn(isLoggedIn => !isLoggedIn) 
+  function toggleLoggedIn(bool) {
+    setIsLoggedIn(isLoggedIn => bool) 
   };
 
   function fillSnackArray(item) {

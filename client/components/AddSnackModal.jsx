@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddSnackModal() {
+export default function AddSnackModal(props) {
   const isLoggedIn = useLoggedInContext()
   const [snackModalIsOpen, setSnackModalIsOpen] = useState(false);
   const [stars, setStars] = useState(2);
@@ -35,20 +35,16 @@ export default function AddSnackModal() {
   const classes = useStyles()
 
   const customStyles = {
-    content: {
-      display: 'flex',
-      // flex-wrap: 'wrap',
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      width:'150px',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      backgroundColor: '#FFFAF1'
-      
-    }
-  };
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        backgroundColor: '#FFFAF1'
+      }
+    };
 
 
 
@@ -105,22 +101,27 @@ export default function AddSnackModal() {
   //   },
   // }));
 
-//   CREATE TABLE Snackslist (
-//     snack_id SERIAL PRIMARY KEY,
-//     snack_name VARCHAR(255),
-//     brand_name VARCHAR(255),
-//     origin VARCHAR(255),
-//     type VARCHAR(255),
-//     flavor_profile VARCHAR(255),
-//     img VARCHAR(255)
-// );
+  //   CREATE TABLE Snackslist (
+  //     snack_id SERIAL PRIMARY KEY,
+  //     snack_name VARCHAR(255),
+  //     brand_name VARCHAR(255),
+  //     origin VARCHAR(255),
+  //     type VARCHAR(255),
+  //     flavor_profile VARCHAR(255),
+  //     img VARCHAR(255)
+  // );
 
 
-//Need to change order of inputs
+  //Need to change order of inputs
+
+  const openCorrectModal = () => {
+    if (isLoggedIn) return setModalIsOpenToTrue();
+    else props.setLoginModal(true);
+  }
 
   return (
     <div>
-      <button id='addSnackButton'onClick={setModalIsOpenToTrue}>Add Snack</button>
+      <button id='addSnackButton' onClick={openCorrectModal}>Add Snack</button>
       <Modal style={customStyles}
         isOpen={snackModalIsOpen}
         onRequestClose={setModalIsOpenToFalse}
@@ -152,7 +153,7 @@ export default function AddSnackModal() {
             </Select>
           </FormControl>
 
-          
+
           {/* Snack Type drop down */}
           <FormControl className={classes.formControl}>
             <InputLabel id="snackType">Type</InputLabel>
