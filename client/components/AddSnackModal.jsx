@@ -131,7 +131,7 @@ export default function AddSnackModal() {
           <input id='origin' placeholder='origin' />
 
           {/* Snack flavor drop down */}
-          <FormControl className="flavorProfileSelector">
+          <FormControl className={classes.formControl}>
             <InputLabel id="flavorProfile">Flavor</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -147,10 +147,10 @@ export default function AddSnackModal() {
             </Select>
           </FormControl>
 
-
+          
           {/* Snack Type drop down */}
-          <FormControl className="snackType">
-            <InputLabel id="demo-simple-select-label">Type</InputLabel>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="snackType">Type</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
