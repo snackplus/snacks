@@ -116,7 +116,7 @@ export default function AddSnackModal() {
 
   return (
     <div>
-      <button onClick={setModalIsOpenToTrue}>Add Snack</button>
+      <button id='addSnackButton'onClick={setModalIsOpenToTrue}>Add Snack</button>
       <Modal style={customStyles}
         isOpen={snackModalIsOpen}
         onRequestClose={setModalIsOpenToFalse}
@@ -131,7 +131,7 @@ export default function AddSnackModal() {
           <input id='origin' placeholder='origin' />
 
           {/* Snack flavor drop down */}
-          <FormControl className="flavorProfileSelector">
+          <FormControl className={classes.formControl}>
             <InputLabel id="flavorProfile">Flavor</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -147,10 +147,10 @@ export default function AddSnackModal() {
             </Select>
           </FormControl>
 
-
+          
           {/* Snack Type drop down */}
-          <FormControl className="snackType">
-            <InputLabel id="demo-simple-select-label">Type</InputLabel>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="snackType">Type</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -170,7 +170,7 @@ export default function AddSnackModal() {
           {/* //name, brand name, img, origin, type, flavor profile(spicy, sweet, salty), rating,   */}
 
           <Box component="fieldset" mb={3} borderColor="transparent">
-            <Typography component="legend">Controlled</Typography>
+            <Typography component="legend"></Typography>
             <Rating
               name="simple-controlled"
               value={stars}

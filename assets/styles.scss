@@ -11,7 +11,52 @@ body{
 button {
   background-color: rgb(167, 58, 58);
   color: white;
-  border-radius: 5px;
+  border-radius: 7px;
   font-family: Staatliches, cursive;
-  padding: 6px;
+  padding: 10px 20px;
+  margin: 3px;
+  border:rgb(167, 58, 58);
+  // box-shadow: -4px -3px 10px 5px rgba(203, 155, 155, 0.35);
+}
+
+button:hover {
+  background-color: rgb(125, 12, 12)
+
+}
+
+img {
+  width: 200px;
+  
+}
+
+.addSnackContainer {
+  display: flex;  
+  align-items:center;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  border: 2px black;
+}
+
+#loginButton {
+  position: relative;
+  right: 100px;
+}
+
+#addSnackButton {
+  position: relative;
+  left: 100px;
+}
+
+.SnackBoxContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.SearchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
