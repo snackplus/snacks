@@ -33,11 +33,15 @@ export default function SnackBoxContainer() {
 
   return (
     <div>
-      <input id="searchId" className="Search" type="text" />
-      <button onClick={search}>Search</button>
+      <div className='SnackBoxContainerLabel'>
+        <input id="searchId" className="Search" type="text" />
+        <button onClick={search}>Search</button>
 
-      <h3>This is SnackBox Container</h3>
+        <h3>THESE ARE YOUR SNACKS</h3>
+      </div>
+      <div className='SnackBoxContainer'>
       {boxArray && boxArray.map((el) => <SnackBox box={el} />)}
+      </div>
     </div>
   );
 }

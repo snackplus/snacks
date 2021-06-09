@@ -7,7 +7,7 @@ commentController.addComment = (req, res, next) => {
     console.log("========== commentController addComment ==========");
     
     const { snack_id, user_id, rating, comment} = req.body;
-
+    console.log(snack_id, user_id, rating, comment);
     let q = {
         text: `INSERT INTO Comments VALUES ($1, $2, $3, $4, DEFAULT)`,
         values: [snack_id, user_id, rating, comment]
@@ -74,7 +74,7 @@ commentController.getComments = (req, res, next) => {
 commentController.getSnackComments = (req, res, next) => {
     let q = {
         text: `SELECT * FROM Comments WHERE snack_id = $1`,
-        values: [req.body[0]]
+        values: [req.body.snack_id]
     }
 
     db.query(q)

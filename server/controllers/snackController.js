@@ -105,28 +105,31 @@ snackController.snackSearch = (req, res, next) => {
 //==================================================
 
 //invokes whenever a new comment with a rating is uploaded to a specific snack
-snackController.updateRating = (req, res, next) => {
+snackController.updateRating = async (req, res, next) => {
     //req.body should contain snack_id
+    console.log("========== hitting update rating ==========, ")
     let new_avg;
-
     let q = {
-        text: `SELECT * FROM Comments WHERE snack_id = ${req.body[0]}`,
+        text: `SELECT * FROM Comments WHERE snack_id = ${req.body.snack_id}`,
+        values: []
     }
-    let q2 = {
-        text: `UPDATE Snackslist s SET s.rating = $1 WHERE s.snack_id = $2`,
-        values: [new_avg, req.body[0]]
-    };
-
-    db.query(q)
+ 
+    await db.query(q.text)
     .then(data => {
         console.log("========== get specific Comment query complete ==========");
         
         let sum = 0;
         data.rows.forEach(e => {
-            sum += e
+            sum += e.rating
         })
+        console.log('sum from update', sum)
         new_avg = sum / data.rows.length;
     })
+
+    let q2 = {
+        text: `UPDATE Snackslist SET rating = $1 WHERE snack_id = $2`,
+        values: [new_avg, req.body.snack_id]
+    };
     db.query(q2)
     .then(data => {
         console.log("========== updated rating of snack ==========");
