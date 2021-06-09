@@ -77,6 +77,31 @@ snackController.getSnacks = (req, res, next) => {
     });
 }
 
+snackController.snackSearch = (req, res, next) => {
+    
+    let param = req.body[0].toUpperCase()
+    
+    let q = {
+        text: `SELECT * FROM Snackslist WHERE UPPER(snack_name) $1`,
+        values: [param]
+    }
+
+    db.query(q)
+    .then(data => {
+        console.log("========== snackSearch query complete ==========");
+        console.log("data.rows: ")
+        console.log(data.rows);
+        res.locals.snacks = data.rows;
+        return next();
+    })
+    .catch(err => {
+        return next({
+            log: `err: snackSearch of SnackController ${err}`,
+            message: "Error retrieving snacks"
+        });
+    });
+}
+
 //==================================================
 
 //invokes whenever a new comment with a rating is uploaded to a specific snack

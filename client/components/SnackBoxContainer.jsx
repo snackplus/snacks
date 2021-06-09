@@ -4,18 +4,13 @@ import { useSnackArrayContext, setSnackArrayContext } from './SnackContext.jsx';
 // import fetch from 'isomorphic-fetch'
 
 export default function SnackBoxContainer() {
-  //sort method takes props from upper component
-  //upper component decides how sort 
-  //if props.sortmethod = rating boxArray.
-  //else if 
-  //const [updatedLocal, setLocal] = useState(null)
-  // setsnackBoxData(boxArray);
+
   const boxArray = useSnackArrayContext();
   const setBoxArray = setSnackArrayContext();
-  // const [boxArray, setBoxArray] = useState([])
+
   
   useEffect(() => {
-
+    console.log('in useEffect')
       fetch('/snack/')
         .then(res => res.json())
         .then(data => setBoxArray(data))
@@ -24,9 +19,10 @@ export default function SnackBoxContainer() {
   }, []);
 
   const search = () => {
-    const searchQuery = document.getElementById('searchId')
+    const searchQuery = document.getElementById('searchId').value
+    console.log('searching with: ', searchQuery)
     fetch('/snack/search', {
-      Method: 'POST',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -34,12 +30,18 @@ export default function SnackBoxContainer() {
     })
       .then(res => res.json())
       .then(data => setBoxArray(data))
+      .catch(e => console.log('Search request failed: ', e))
+  }
+
+  const filter = () => {
+
   }
 
   return (
     <div>
       <input id="searchId" className="Search" type="text" />
       <button onClick={search}>Search</button>
+      
       <h3>This is SnackBox Container</h3>
       {
         boxArray && boxArray.map(el => <SnackBox box={el}/>)
