@@ -107,7 +107,7 @@ export default function DetailsModal(props) {
    
           <button onClick={seeComments}>See Comments</button>
 
-          <div>
+          <div className='Comments'>
             {comments &&
               comments.map((el) => (
                 <Comment
