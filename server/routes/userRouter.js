@@ -20,7 +20,7 @@ routerUser.post('/logout', cookieControllerUser.deleteSessionCookie, (req, res) 
 });
 
 routerUser.get('/verifySession', cookieControllerUser.sessionValidation, (req, res) => {
-    res.status(200).json('success');
+    res.status(200).json({ status: true });
 });
 
 module.exports = routerUser;
