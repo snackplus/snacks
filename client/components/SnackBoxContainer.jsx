@@ -23,34 +23,27 @@ export default function SnackBoxContainer() {
 
   }, []);
 
-  // boxArray.map(el=> {
-  //   console.log(el)
-  // })
-  // function loadData() {
-  //   const response = fetch('/snack/')
-  //   const data = response.json()
-  //   setBoxArray(data)
-  // }
-  // boxArray.map(el => {
-  //   <SnackBox key={el.snack_id}
-  //     id={el.snack_id}
-  //     image={el.img}
-  //     brand={el.brand_name}
-  //     name={el.snack_name}
-  //     origin={el.origin}
-  //     rating={el.rating}
-  //     flavorProfile={el.flavor_profile}
-  //     type={el.type} />
-  // })
+  const search = () => {
+    const searchQuery = document.getElementById('searchId')
+    fetch('/snack/search', {
+      Method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify([searchQuery])
+    })
+      .then(res => res.json())
+      .then(data => setBoxArray(data))
+  }
 
   return (
     <div>
-    <input id="" className="Search" type="text" />
-    <button>Search</button>
-    <h3>This is SnackBox Container</h3>
-    {
-      boxArray && boxArray.map(el => <SnackBox box={el}/>)
-    }
+      <input id="searchId" className="Search" type="text" />
+      <button onClick={search}>Search</button>
+      <h3>This is SnackBox Container</h3>
+      {
+        boxArray && boxArray.map(el => <SnackBox box={el}/>)
+      }
     </div>
 
 

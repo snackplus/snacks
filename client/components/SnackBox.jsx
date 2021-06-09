@@ -8,11 +8,12 @@ export default function SnackBox (props) {
 
   return (
       <div key={props.box.snack_id}>
-        <h1>{props.box.snack_id}</h1>
+        {/* <h1>{props.box.snack_id}</h1> */}
         <img src={props.box.img} alt="" />
         {/* <h1>{props.box.img}</h1> */}
-        <h3>{props.box.brand_name} {props.box.snack_name}</h3>
-        <h4>{props.box.origin}</h4>
+        <h3>Snack: {props.box.brand_name} {props.box.snack_name}</h3>
+        <h4>Origin: {props.box.origin}</h4>
+        <h4>Rating: {props.box.rating}</h4>
         {/* {props.box.map(el => {
           return (
             <h1>{el.snack_id}</h1>
