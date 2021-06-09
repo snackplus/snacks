@@ -45,12 +45,16 @@ export default function SnackBoxContainer() {
 
   return (
     <div>
-    <input id="" className="Search" type="text" />
-    <button>Search</button>
-    <h3>This is SnackBox Container</h3>
-    {
-      boxArray && boxArray.map(el => <SnackBox box={el}/>)
-    }
+      <div className='SearchContainer'>
+      <input id="" className="Search" type="text" />
+      <button>Search</button>
+      <h3>This is SnackBox Container</h3>
+      </div>
+        <div className='SnackBoxContainer'>
+        {
+          boxArray && boxArray.map(el => <SnackBox box={el}/>)
+        }
+        </div>
     </div>
 
 

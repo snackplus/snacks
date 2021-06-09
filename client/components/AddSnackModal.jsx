@@ -116,7 +116,7 @@ export default function AddSnackModal() {
 
   return (
     <div>
-      <button onClick={setModalIsOpenToTrue}>Add Snack</button>
+      <button id='addSnackButton'onClick={setModalIsOpenToTrue}>Add Snack</button>
       <Modal style={customStyles}
         isOpen={snackModalIsOpen}
         onRequestClose={setModalIsOpenToFalse}
