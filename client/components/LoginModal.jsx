@@ -22,44 +22,54 @@ export default function LoginModal() {
     if (username.value === '') return setInfo('No Username!');
     if (password.value === '') return setInfo('No Password!');
 
+
+    console.log(username.value, password.value)
     fetch('/user/login',{
       method: 'POST',
       headers: { 'Content-Type': 'Application/JSON' },
-      body: JSON.stringify({ username: username.value, password: password.value })
+      body: JSON.stringify({ username: username.value, password: password.value.trim() })
     })
-      .then((data) => data.json())
-      .then((data) => {
-        if (data.status === 'noUser') return setInfo('Username not found!');
-        if (data.status === 'wrongPassword') return setInfo('Wrong Password!');
-        setInfo(null)
-        setLoggedIn(true);
+    .then((data) => data.json())
+    .then((data) => {
+      if (data.status === 'noUser') return setInfo('Username not found!');
+      if (data.status === 'wrongPassword') return setInfo('Wrong Password!');
+      setInfo('Logging in...')
+      setLoggedIn(true);
+      setTimeout(() => {setModalIsOpenToFalse(); setInfo(null)}, 500);
     })
   }
-
+  
   const signup = () => {
     const username = document.getElementById("username"), password = document.getElementById("password"), confPassword = document.getElementById("confPassword");
     if (username.value === '') return setInfo('No Username!');
     if (password.value === '') return setInfo('No Password!');
     if (confPassword.value === '') return setInfo('Please confirm your password.');
-
-    if (password.value !== confPassword.value) return setInfo('Passwords don\'t match.'); password.value = ''; confPassword.value = '';
+    
+    if (password.value !== confPassword.value) {
+      setInfo('Passwords don\'t match.');
+      password.value = '';
+      confPassword.value = '';
+      return;
+    }
+    console.log(username.value, password.value)
 
     fetch('/user/signup',{
       method: 'POST',
       headers: { 'Content-Type': 'Application/JSON' },
-      body: JSON.stringify({ username: username.value, password: password.value })
+      body: JSON.stringify({ username: username.value, password: password.value.trim() })
     })
       .then((data) => data.json())
       .then((data) => {
         if (data.status === 'userExists') return setInfo('Username already exists.');
-        setInfo(null)
+        setInfo('Account created! Logging in...')
         setLoggedIn(true);
+        setTimeout(() => {setModalIsOpenToFalse(); setInfo(null); setSignupStatus(false);}, 500);
     })
   }
 
   let signInOut = [<div>
                       <button onClick={() => login()}>Login</button>
-                      <button onClick={() => setSignupStatus(true)}>Signup</button>
+                      <button onClick={() => {setSignupStatus(true); setInfo(null);}}>Signup</button>
                     </div>]
   if (signupStatus) signInOut = [<div>
                                   <input id="confPassword" className='password' placeholder='Confirm Password' />
