@@ -28,7 +28,7 @@ export function setSnackArrayContext(item) {
 export function LoggedInProvider ({ children }) {
   //creates the state
   const [loggedIn, setIsLoggedIn] = useState(false)
-  const [snackArray, setSnackArray] = useState(['Nikhil', 'jake'])
+  const [snackArray, setSnackArray] = useState(null)
 
   //updates the state
   function toggleLoggedIn() {
@@ -36,7 +36,7 @@ export function LoggedInProvider ({ children }) {
   };
 
   function fillSnackArray(item) {
-    console.log('in context fill array ', [...item])
+    // console.log('in context fill array ', [...item])
     setSnackArray(newArray => [...item])
   }
   return (
