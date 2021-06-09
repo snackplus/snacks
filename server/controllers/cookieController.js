@@ -85,16 +85,16 @@ const cookieController = {
     //add column 
     getUserFromSSID(req, res, next) {
 
-        const { ssid } = res.locals;
+        const { SSID } = req.cookies;
 
         const query = {
-            text: `SELECT uuid FROM sessions WHERE ssid = $1`,
-            values: [ssid]
+            text: `SELECT username FROM sessions WHERE session_id = $1`,
+            values: [SSID]
         }
         dbCookie.query(query)
             .then(data => {
                 if (!data.rows.length) return res.status(200).json({ message: 'invalid ssid' })
-                res.locals.username = data.rows[0].uuid;
+                res.locals.username = data.rows[0].username;
                 return next();
             })
     }
