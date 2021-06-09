@@ -36,13 +36,17 @@ export default function AddSnackModal() {
 
   const customStyles = {
     content: {
+      display: 'flex',
+      // flex-wrap: 'wrap',
       top: '50%',
       left: '50%',
       right: 'auto',
       bottom: 'auto',
+      width:'150px',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       backgroundColor: '#FFFAF1'
+      
     }
   };
 
@@ -124,9 +128,10 @@ export default function AddSnackModal() {
       >
         <div className="addSnackContainer">
           <button onClick={setModalIsOpenToFalse}>x</button>
-
+          {/* <br><br/> */}
           <input id='snackImage' placeholder='Snack Image png/jpeg' />
           <input id='brandName' placeholder='brand' />
+          {/* <br><br/> */}
           <input id='snackName' placeholder='Snack Name' />
           <input id='origin' placeholder='origin' />
 

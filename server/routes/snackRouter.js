@@ -28,9 +28,12 @@ snackRouter.post('/snackComment', commentController.getSnackComments, (req, res)
     res.status(200).json(res.locals.comments);
 });
 
-// snackRouter.post('/addSnackComment', commentController.addComment, snackController.updateRating, commentController.getSnackComments, (req, res) => {
-//     res.status(200).json(res.locals.comments);
-// });
+snackRouter.post('/addSnackComment', 
+commentController.addComment, 
+snackController.updateRating, 
+commentController.getSnackComments, (req, res) => {
+    res.status(200).json(res.locals.comments);
+});
 
 snackRouter.post('/search', snackController.snackSearch, (req, res) => {
     res.status(200).json(res.locals.snacks);
