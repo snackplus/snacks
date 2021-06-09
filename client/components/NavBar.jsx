@@ -15,8 +15,8 @@ if (isLoggedIn === false){
 
 
   return (
-    <div>
-      <h1>This is Nav Bar {string}</h1>
+    <div className='navBar'>
+      {/* <h1>This is Nav Bar {string}</h1> */}
       <AddSnackModal />
       <LoginModal />
 
