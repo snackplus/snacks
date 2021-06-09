@@ -48,8 +48,8 @@ export default function SnackBoxContainer() {
       <div className='SearchContainer'>
       <input id="" className="Search" type="text" />
       <button>Search</button>
-      <h3>This is SnackBox Container</h3>
       </div>
+      <h3>This is SnackBox Container</h3>
         <div className='SnackBoxContainer'>
         {
           boxArray && boxArray.map(el => <SnackBox box={el}/>)

@@ -53,8 +53,10 @@ img {
 .SnackBoxContainer {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 .SearchContainer {
-  // display: flex;
-  // position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
