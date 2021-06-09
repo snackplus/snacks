@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavBar from './NavBar.jsx'
 import { useLoggedInContext, useSetLoggedInContext } from './SnackContext.jsx'
-import SnackViewContainer from './SnackViewContainer.jsx'
+import SnackBoxContainer from './SnackBoxContainer.jsx'
 
 export default function MainPage() {
 
@@ -18,7 +18,7 @@ export default function MainPage() {
       <NavBar />
       <div>This is the Main Page and you are logged in: {string} </div>
       <button onClick={setLoggedIn}>Click it</button>
-      <SnackViewContainer />
+      <SnackBoxContainer />
     </div>
     
   )
