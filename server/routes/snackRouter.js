@@ -24,4 +24,8 @@ snackRouter.get('/rate', commentController.addComment, snackController.updateRat
     res.status(200);
 });
 
+snackRouter.get('/search', snackController.snackSearch, (req, res) => {
+    res.status(200).json(res.locals.snacks);
+});
+
 module.exports = snackRouter;
