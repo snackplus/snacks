@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 /* Path to databse*/
 const dbUser = require('../models/DatabaseModel');
 
@@ -36,8 +36,9 @@ const userController = {
         dbUser.query(queryString, queryArgs, (err, user) => {
             //if our returned query has nothing in the rows key then db did not find the user and it is not a valid user
             if (user.rows.length === 0) return res.status(400).json({ status: 'noUser'});
+            console.log(user.rows)
             //if the username is a username in the db then check that password the user entered matches the password in the db for that username
-            bcrypt.compare(req.body.password, user.rows[0].password, (err, isMatch) => {
+            bcrypt.compare(req.body.password, user.rows[0].hashed_password, (err, isMatch) => {
                 if (err) console.log('Error in bcrypt hashing, verifyUser: ', err)
                 //if not a password match then not a valid user
                 if (!isMatch) return res.status(200).json({ status: 'wrongPassword'});
