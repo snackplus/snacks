@@ -88,7 +88,7 @@ export default function LoginModal() {
 
   return (
     <div>
-      <button onClick={setModalIsOpenToTrue}>Login</button>
+      <button id='loginButton'onClick={setModalIsOpenToTrue}>Login</button>
       <Modal style={customStyles}
         isOpen={modalIsOpen}
         onRequestClose={setModalIsOpenToFalse}

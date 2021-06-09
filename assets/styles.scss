@@ -29,15 +29,32 @@ img {
   
 }
 
-// .flavorProfileSelector {
-//   padding: 20px;
-//   color: green;
-// }
-// #flavorProfile {
-//   padding: 0px 0px 0px 80px;
-// }
-
 .addSnackContainer {
   display: flex;  
   align-items:center;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  border: 2px black;
+}
+
+#loginButton {
+  position: relative;
+  right: 100px;
+}
+
+#addSnackButton {
+  position: relative;
+  left: 100px;
+}
+
+.SnackBoxContainer {
+  display: flex;
+  justify-content: space-around;
+}
+.SearchContainer {
+  // display: flex;
+  // position: center;
 }
