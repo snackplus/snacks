@@ -1,21 +1,15 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { useLoggedInContext, useSetLoggedInContext } from "./SnackContext.jsx";
+import { useSetLoggedInContext, useLoggedInContext } from "./SnackContext.jsx";
 
 //need to import context
-export default function LoginModal() {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const loggedIn = useLoggedInContext();
-  const setLoggedIn = useSetLoggedInContext();
+export default function LoginModal(props) {
+  const setLoggedIn = useSetLoggedInContext(), loggedIn = useLoggedInContext();
   const [signupStatus, setSignupStatus] = useState(false);
   const [info, setInfo] = useState(null);
-  //set state of login details for a user with username and password
 
-  //create state vars related to signedin context
-  //TODO HANDLE LOGIN REQUEST
-  //set the context of login to true
-  //TODO HANDLE SIGNUP REQUEST
-  //set the context of login to true
+  console.log(props.modalIsOpen)
+
 
   const login = () => {
     const username = document.getElementById("username"),
@@ -34,7 +28,7 @@ export default function LoginModal() {
         if (data.status === 'wrongPassword') return setInfo('Wrong Password!');
         setInfo('Logging in...')
         setLoggedIn(true);
-        setTimeout(() => { setModalIsOpenToFalse(); setInfo(null) }, 500);
+        setTimeout(() => { props.setLoginModal(false); setInfo(null) }, 500);
       })
   }
 
@@ -62,9 +56,19 @@ export default function LoginModal() {
         if (data.status === 'userExists') return setInfo('Username already exists.');
         setInfo('Account created! Logging in...')
         setLoggedIn(true);
-        setTimeout(() => { setModalIsOpenToFalse(); setInfo(null); setSignupStatus(false); }, 500);
+        setTimeout(() => { props.setLoginModal(false); setInfo(null); setSignupStatus(false); }, 500);
       })
   }
+
+  const logout = () => {
+    fetch('/user/logout', { method: 'POST', credentials: 'include' })
+      .then(data => data.json())
+      .then(() => setLoggedIn(false))
+      .catch(err => console.log('ERROR LOGGING OUT: ', err))
+  }
+
+  let loginLogout = <button id="loginButton" onClick={() => props.setLoginModal(true)}>Login</button>
+  if (loggedIn) loginLogout = <button id="loginButton" onClick={() => logout()}>Logout</button>
 
   let signInOut = [<div>
     <button onClick={() => login()}>Login</button>
@@ -76,13 +80,6 @@ export default function LoginModal() {
     <button onClick={() => { setSignupStatus(false); setInfo(null); }}>Back</button>
   </div>]
 
-  const setModalIsOpenToTrue = () => {
-    setModalIsOpen(true);
-  };
-
-  const setModalIsOpenToFalse = () => {
-    setModalIsOpen(false);
-  };
   const customStyles = {
     content: {
       top: "50%",
@@ -97,17 +94,15 @@ export default function LoginModal() {
 
   return (
     <div>
-      <button id="loginButton" onClick={setModalIsOpenToTrue}>
-        Login
-      </button>
+      {loginLogout}
       <Modal
         style={customStyles}
-        isOpen={modalIsOpen}
-        onRequestClose={setModalIsOpenToFalse}
+        isOpen={props.modalIsOpen}
+        onRequestClose={() => props.setLoginModal(false)}
         appElement={document.getElementById("root")} //this is where the modal gets hung (is in relationto)
       >
         <div className="loginContainer">
-          <button onClick={setModalIsOpenToFalse}>x</button>
+          <button onClick={() => props.setLoginModal(false)}>x</button>
           <input id="username" className="username" placeholder="UserName" />
           <input id="password" className="password" placeholder="Password" />
           {signInOut}

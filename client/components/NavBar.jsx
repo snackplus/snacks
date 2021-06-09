@@ -3,22 +3,16 @@ import LoginModal from './LoginModal.jsx'
 import AddSnackModal from './AddSnackModal.jsx'
 import { useLoggedInContext } from './SnackContext.jsx'
 
-export default function NavBar () {
-//we need logged in state/context
-const isLoggedIn = useLoggedInContext()
-let string = ''
-if (isLoggedIn === false){
-  string = 'false'
-} else {
-  string = 'true'
-}
-
+export default function NavBar(props) {
+  //we need logged in state/context
+  const isLoggedIn = useLoggedInContext()
+  console.log(props.modalIsOpen)
 
   return (
     <div className='navBar'>
       {/* <h1>This is Nav Bar {string}</h1> */}
-      <AddSnackModal />
-      <LoginModal />
+      <AddSnackModal setLoginModal={props.setLoginModal} />
+      <LoginModal setLoginModal={props.setLoginModal} modalIsOpen={props.modalIsOpen} />
 
     </div>
   )
