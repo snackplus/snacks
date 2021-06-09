@@ -129,9 +129,10 @@ export default function AddSnackModal(props) {
       >
         <div className="addSnackContainer">
           <button onClick={setModalIsOpenToFalse}>x</button>
-
+          {/* <br><br/> */}
           <input id='snackImage' placeholder='Snack Image png/jpeg' />
           <input id='brandName' placeholder='brand' />
+          {/* <br><br/> */}
           <input id='snackName' placeholder='Snack Name' />
           <input id='origin' placeholder='origin' />
 

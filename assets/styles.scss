@@ -3,7 +3,12 @@
 
 
 body{
-  background-color: #FFFAF1;
+  // background-color: #FFFAF1;
+  background: linear-gradient(315deg, transparent 75%, #FFFAF1 0)-10px 0,
+    linear-gradient(45deg, transparent 75%, #FFFAF1 0)-10px 0,
+    linear-gradient(135deg, #e9dad9 50%, transparent 0) 0 0,
+    linear-gradient(45deg, #f7e5e1 50%, #f7e5e1 0) 0 0 #cbb3b1;
+    background-size: 20px 20px;
   color: black;
   font-family: Staatliches, cursive;
 }
@@ -16,7 +21,7 @@ button {
   padding: 10px 20px;
   margin: 3px;
   border:rgb(167, 58, 58);
-  // box-shadow: -4px -3px 10px 5px rgba(203, 155, 155, 0.35);
+  box-shadow: 1px 1px 2px rgb(181, 88, 88);
 }
 
 button:hover {
@@ -31,13 +36,45 @@ img {
 
 .addSnackContainer {
   display: flex;  
-  align-items:center;
+  // justify-content: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navBar {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   border: 2px black;
+}
+.SnackBox {
+  border: 2px solid rgb(167, 58, 58);
+  border-radius: 7px;
+  padding: 20px;
+  margin: 10px 10px;
+  box-shadow: 2px 2px 5px rgb(206, 185, 185);;
+  background: white;
+}
+
+.SnackBoxContainerLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  text-shadow: 2px 2px 5px rgb(181, 88, 88);
+}
+
+.SnackBoxContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  // align-items: space-between;
+}
+.SearchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #loginButton {
@@ -50,13 +87,11 @@ img {
   left: 100px;
 }
 
-.SnackBoxContainer {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-.SearchContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#header-div {
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 40px;
+text-shadow: 2px 2px 5px rgb(181, 88, 88);
+font-style: italic;
 }
