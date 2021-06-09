@@ -71,6 +71,28 @@ commentController.getComments = (req, res, next) => {
     });
 }
 
+commentController.getSnackComments = (req, res, next) => {
+    let q = {
+        text: `SELECT * FROM Comments WHERE snack_id = $1`,
+        values: [req.body[0]]
+    }
+
+    db.query(q)
+    .then(data => {
+        console.log("========== getComments query complete ==========");
+        res.locals.comments = data.rows;
+
+        return next();
+    })
+    .catch(err => {
+        return next({
+            log: `err: getComments of commentController ${err}`,
+            message: "Error retrieving comments"
+        });
+    });
+}
+
+
 //==================================================
 
 module.exports = commentController;

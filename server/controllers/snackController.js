@@ -82,11 +82,11 @@ snackController.snackSearch = (req, res, next) => {
     let param = req.body[0].toUpperCase()
     
     let q = {
-        text: `SELECT * FROM Snackslist WHERE snack_name iLIKE 1$`,
+        text: `SELECT * FROM Snackslist WHERE UPPER(snack_name) $1`,
         values: [param]
     }
 
-    db.query(q.text)
+    db.query(q)
     .then(data => {
         console.log("========== snackSearch query complete ==========");
         console.log("data.rows: ")

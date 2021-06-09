@@ -170,7 +170,7 @@ export default function AddSnackModal() {
           {/* //name, brand name, img, origin, type, flavor profile(spicy, sweet, salty), rating,   */}
 
           <Box component="fieldset" mb={3} borderColor="transparent">
-            <Typography component="legend">Controlled</Typography>
+            <Typography component="legend"></Typography>
             <Rating
               name="simple-controlled"
               value={stars}
