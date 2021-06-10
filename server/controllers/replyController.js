@@ -54,6 +54,9 @@ replyController.delReply = (req, res, next) => {
 //==================================================
 
 replyController.getReplies = (req, res, next) => {
+    console.log("req.body")
+    console.log(req.body)
+
     let q = {
         text: `SELECT * FROM replylist WHERE comment_id = ${req.body.comment_id}`
     }
@@ -61,7 +64,8 @@ replyController.getReplies = (req, res, next) => {
     db.query(q.text)
     .then(data => {
         console.log("========== getreplies query complete ==========");
-        res.locals.replies = data.rows;
+        console.log(data.rows); 
+        res.locals.reps = data.rows;
         return next();
     })
     .catch(err => {
