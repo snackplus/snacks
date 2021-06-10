@@ -125,7 +125,7 @@ snackController.updateRating = async (req, res, next) => {
         console.log('sum from update', sum)
         new_avg = sum / data.rows.length;
     })
-
+    new_avg = Math.floor(new_avg)
     let q2 = {
         text: `UPDATE Snackslist SET rating = $1 WHERE snack_id = $2`,
         values: [new_avg, req.body.snack_id]

@@ -19,8 +19,10 @@ export default function DetailsModal(props) {
   };
 
   const setModalIsOpenToFalse = () => {
+    setInfo(null);
     setModalIsOpen(false);
   };
+
   const customStyles = {
     content: {
       top: "50%",
@@ -47,7 +49,8 @@ export default function DetailsModal(props) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (!data.length) return setInfo('This snack has no reviews! Add one above.')
+        setInfo(null);
         setComments(data);
       });
   };
@@ -78,7 +81,12 @@ export default function DetailsModal(props) {
       .then((res) => res.json())
       .then((data) => {
         if (data.status) return setInfo('Already reviewed!');
-        input.value = ''; setComments(data);
+        input.value = '';
+        setInfo(null);
+        setComments(data);
+        fetch("/snack/")
+        .then((res) => res.json())
+        .then((data) => setBoxArray(data));
       });
   };
   //snack_id, snack_name, brand_name, origin, type, flavor_profile, rating, img

@@ -5,37 +5,36 @@ const commentController = {};
 
 commentController.addComment = (req, res, next) => {
     console.log("========== commentController addComment ==========");
-
-    let q = {
-        text: `SELECT * FROM comments WHERE user_id=$1`,
-        values: [res.locals.username]
-    }
-    db.query(q)
-    .then((data) => {
-        console.log("========== checking database if user already commented ==========");
-        if (data.rows) return res.status(400).json({status: 'failed'});
-    })
-
     const { snack_id, rating, comment} = req.body;
-    // console.log(snack_id, user_id, rating, comment);
-    q = {
-        text: `INSERT INTO comments VALUES ($1, $2, $3, $4, DEFAULT)`,
-        values: [snack_id, res.locals.username, rating, comment]
+    
+    let q = {
+        text: `SELECT * FROM comments WHERE user_id=$1 AND snack_id=$2`,
+        values: [res.locals.username, snack_id]
     }
-
-    db.query(q)
-    .then(() => {
-        console.log("========== database updated with new comment ==========");
-        return next()
+    db.query(q, (err, data) => {
+        console.log("========== checking database if user already commented ==========");
+        if (err) return next({message: err})
+        console.log(data)
+        if (data.rows.length) return res.status(400).json({status: 'failed'});
+        // console.log(snack_id, user_id, rating, comment);
+        q = {
+            text: `INSERT INTO comments VALUES ($1, $2, $3, $4, DEFAULT)`,
+            values: [snack_id, res.locals.username, rating, comment]
+        }
+    
+        db.query(q)
+        .then(() => {
+            console.log("========== database updated with new comment ==========");
+            return next()
+        })
+        .catch(err => {
+            console.log("========== commentController.addComment error ==========")
+            return next({
+                log: `err: addComment of commentController ${err}`,
+                message: "Error adding comment"
+            });
+        })
     })
-    .catch(err => {
-        console.log("========== commentController.addComment error ==========")
-        return next({
-            log: `err: addComment of commentController ${err}`,
-            message: "Error adding comment"
-        });
-    })
-
 }
 
 //==================================================
