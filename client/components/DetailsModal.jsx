@@ -124,6 +124,7 @@ export default function DetailsModal(props) {
                   username={el.user_id}
                   rating={el.rating}
                   comment={el.comment}
+                  comment_id={el.comment_id}
                 />
               ))}
           </div>

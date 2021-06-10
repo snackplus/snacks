@@ -5,8 +5,8 @@ const replyController = {}
 
 replyController.addReply = (req, res, next) => {
     console.log("========== replyController addreply ==========");
-    
-    const { comment_id, user_id, reply } = req.body;
+    const user_id = res.locals.username
+    const { comment_id, reply } = req.body;
     //comment being replied to
     // reply_id, comment_id, user_id, reply
     let q = {
@@ -55,7 +55,7 @@ replyController.delReply = (req, res, next) => {
 
 replyController.getReplies = (req, res, next) => {
     let q = {
-        text: `SELECT * FROM replylist WHERE comment_id = ${req.body[0]}`
+        text: `SELECT * FROM replylist WHERE comment_id = ${req.body.comment_id}`
     }
 
     db.query(q.text)
@@ -66,7 +66,7 @@ replyController.getReplies = (req, res, next) => {
     })
     .catch(err => {
         return next({
-            log: `err: getreplys of replyController ${err}`,
+            log: `err: getreplies of replyController ${err}`,
             message: "Error retrieving replys"
         });
     });
