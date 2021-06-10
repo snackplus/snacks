@@ -107,7 +107,6 @@ export default function DetailsModal(props) {
           <div>Rating: {props.box.rating}</div>
           <div>Origin: {props.box.origin}</div>
           <div>Flavor: {props.box.flavor_profile}</div>
-          <div>{stars}</div>
           <Box component="fieldset" mb={3} borderColor="transparent">
             <Rating
               name="simple-controlled"
