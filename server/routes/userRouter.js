@@ -23,4 +23,8 @@ routerUser.get('/verifySession', cookieControllerUser.sessionValidation, (req, r
     res.status(200).json({ status: true });
 });
 
+routerUser.get('/getName', cookieControllerUser.getUserFromSSID, (req, res) => {
+    res.status(200).json(res.locals);
+});
+
 module.exports = routerUser;
