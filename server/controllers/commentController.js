@@ -5,12 +5,22 @@ const commentController = {};
 
 commentController.addComment = (req, res, next) => {
     console.log("========== commentController addComment ==========");
-    
-    const { snack_id, user_id, rating, comment} = req.body;
-    console.log(snack_id, user_id, rating, comment);
+
     let q = {
-        text: `INSERT INTO Comments VALUES ($1, $2, $3, $4, DEFAULT)`,
-        values: [snack_id, user_id, rating, comment]
+        text: `SELECT * FROM comments WHERE user_id=$1`,
+        values: [res.locals.username]
+    }
+    db.query(q)
+    .then((data) => {
+        console.log("========== checking database if user already commented ==========");
+        if (data.rows) return res.status(400).json({status: 'failed'});
+    })
+
+    const { snack_id, rating, comment} = req.body;
+    // console.log(snack_id, user_id, rating, comment);
+    q = {
+        text: `INSERT INTO comments VALUES ($1, $2, $3, $4, DEFAULT)`,
+        values: [snack_id, res.locals.username, rating, comment]
     }
 
     db.query(q)
