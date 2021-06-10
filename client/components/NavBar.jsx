@@ -7,6 +7,7 @@ export default function NavBar(props) {
     <div className='navBar'>
       {/* <h1>This is Nav Bar {string}</h1> */}
       <AddSnackModal setLoginModal={props.setLoginModal} />
+      
       <LoginModal setWelcomeMsg={props.setWelcomeMsg}setLoginModal={props.setLoginModal} modalIsOpen={props.modalIsOpen} />
 
     </div>

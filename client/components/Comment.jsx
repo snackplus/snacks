@@ -33,8 +33,12 @@ export default function Comment(props) {
     };
 
   const addReply = () => {
-    const reply = document.getElementById('replyInput').value
+    const reply = document.getElementById(`replyInput${props.comment_id}`).value
+    document.getElementById(`replyInput${props.comment_id}`).value = '';
+    console.log('addreply, ', reply)
+    console.log('comment_id, ', props.comment_id)
     if(reply === '') return;
+    
     fetch("/comment/commentReply", {
       method: "POST",
       headers: {
@@ -59,7 +63,7 @@ export default function Comment(props) {
         <div>{props.comment}</div>
         <button onClick={seeReplies}>View Replies</button>
         <button onClick={addReply}>Reply</button>
-        <input id="replyInput" type="text" placeholder={`Reply to ${props.username}`}/>
+        <input id={`replyInput${props.comment_id}`} type="text" placeholder={`Reply to ${props.username}`}/>
       {/* {if (addReply) } */}
         {/* {asdfadf} */}
         <div className='Replies'>

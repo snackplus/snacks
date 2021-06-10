@@ -26,6 +26,9 @@ export default function MainPage() {
 
   return (
     <div>
+      <div className='Logo'>
+        <img id='logoImage'src='../assets/Snackplus.png'></img>
+      </div>
       <div className='welcomeMsg'>{welcomeMsg}</div>
       <NavBar setWelcomeMsg={setWelcomeMsg} setLoginModal={setLoginModalIsOpen} modalIsOpen={loginModalIsOpen} />
       <SnackBoxContainer setLoginModal={setLoginModalIsOpen} />

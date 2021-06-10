@@ -102,8 +102,8 @@ export default function LoginModal(props) {
         appElement={document.getElementById("root")} //this is where the modal gets hung (is in relationto)
       >
         <div className="LoginContainer">
-          <input className='LoginInput'id="username" className="username" placeholder="UserName"/>
-          <input className='LoginInput'id="password" type='password' className="password" placeholder="Password"/>
+          <input className='LoginInput'id="username"placeholder="UserName"/>
+          <input className='LoginInput'id="password" type='password'placeholder="Password"/>
           {signInOut}
           <div className="loginSignupInfo">{info}</div>
           <button onClick={() => props.setLoginModal(false)}>x</button>
