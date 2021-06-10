@@ -100,8 +100,8 @@ export default function SnackBoxContainer(props) {
       .catch(err => console.log('error in clear filters', err))
   }
 
-  let filterOrClear = <button onClick={filterBoxes}>Search</button>
-  if (filter) filterOrClear = <button onClick={clearFilters}>Clear Filters</button>
+  let filterOrClear = <button className="searchButton" onClick={filterBoxes}>Search</button>
+  if (filter) filterOrClear = <button className="searchButton" onClick={clearFilters}>Clear Filters</button>
   const customStyles = {
     content: {
       top: "50%",
@@ -126,6 +126,7 @@ export default function SnackBoxContainer(props) {
     console.log('array of checked?', array)
     setFilter(true)
     filterBoxes(array)
+    setModalIsOpenToFalse();
   }
 
   const flavorChange = (event) => {
@@ -141,11 +142,11 @@ export default function SnackBoxContainer(props) {
       <div className='SnackBoxContainerLabel'>
         <div className='FilterArea'>
           <div>
-            <input id="searchId" className="Search" type="text" placeHolder='Something Quirky'/>
+            <input id="searchId" className="Search" type="text" placeholder='What do you desire?' />
           </div>
-          <div>
+          <div className='FilterButtons'>
             {filterOrClear}
-            <button onClick={setModalIsOpenToTrue}>Filter</button>
+            <button className="searchButton" onClick={setModalIsOpenToTrue}>Filter</button>
           </div>
         </div>
         <Modal
@@ -156,33 +157,31 @@ export default function SnackBoxContainer(props) {
         >
           <div className="filterContainer">
 
-            <form id='filterForm' action="">
-              <p>Flavor Profile:</p>
-              <input type="checkbox" id="sweet" name="sweet" value="sweet" />
-              <label htmlFor="sweet">Sweet</label>
-              <input type="checkbox" id="salty" name="salty" value="salty" />
-              <label htmlFor="salty">Salty</label>
-              <input type="checkbox" id="sour" name="sour" value="sour" />
-              <label htmlFor="sour">Sour</label>
-              <input type="checkbox" id="spicy" name="spicy" value="spicy" />
-              <label htmlFor="spicy">Spicy</label>
-              <input type="checkbox" id="bitter" name="bitter" value="bitter" />
-              <label htmlFor="bitter">Bitter</label>
+            <form className="filterForm" id='filterForm' action="">
+              <h3>Filters</h3>
+                <input type="checkbox" id="sweet" name="sweet" value="sweet" />
+                <label htmlFor="sweet">Sweet</label><br />
+                <input type="checkbox" id="salty" name="salty" value="salty" />
+                <label htmlFor="salty">Salty</label><br />
+                <input type="checkbox" id="sour" name="sour" value="sour" />
+                <label htmlFor="sour">Sour</label><br />
+                <input type="checkbox" id="spicy" name="spicy" value="spicy" />
+                <label htmlFor="spicy">Spicy</label><br />
+                <input type="checkbox" id="bitter" name="bitter" value="bitter" />
+                <label htmlFor="bitter">Bitter</label><br />
 
-              <p>Type:</p>
-              <input type="checkbox" id="chips" name="chips" value="chips" />
-              <label htmlFor="chips">Chips</label><br />
-              <input type="checkbox" id="candy" name="candy" value="candy" />
-              <label htmlFor="candy">Candy</label><br />
-              <input type="checkbox" id="beverage" name="beverage" value="beverage" />
-              <label htmlFor="beverage">Beverage</label><br />
-              <input type="checkbox" id="fruit" name="fruit" value="fruit" />
-              <label htmlFor="fruit">Fruit</label><br />
 
-              <p>Sort Results By:</p>
+                <input type="checkbox" id="chips" name="chips" value="chips" />
+                <label htmlFor="chips">Chips</label><br />
+                <input type="checkbox" id="candy" name="candy" value="candy" />
+                <label htmlFor="candy">Candy</label><br />
+                <input type="checkbox" id="beverage" name="beverage" value="beverage" />
+                <label htmlFor="beverage">Beverage</label><br />
+                <input type="checkbox" id="fruit" name="fruit" value="fruit" />
+                <label htmlFor="fruit">Fruit</label><br />
 
               <FormControl className={classes.formControl}>
-                <InputLabel id="snackType">Choose:</InputLabel>
+                <InputLabel id="snackType">Sort Rating By:</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -190,15 +189,15 @@ export default function SnackBoxContainer(props) {
                   onChange={typeChange}
                 >
                   <MenuItem value={''}></MenuItem>
-                  <MenuItem value={'Top'}>Top</MenuItem>
-                  <MenuItem value={'Least'}>Least</MenuItem>
+                  <MenuItem value={'Top'}>Highest</MenuItem>
+                  <MenuItem value={'Least'}>Lowest</MenuItem>
 
                 </Select>
               </FormControl>
 
               {/* <input type="submit" name="submit" onClick={handleClick} value="inputSubmit" /> */}
-              <button onClick={handleClick} id='filterInputButton' type="submit" value="Submit">Submit Your Filters</button>
             </form>
+            <button onClick={handleClick} id='filterInputButton' type="submit" value="Submit">Submit Your Filters</button>
           </div>
         </Modal>
         {/* <FilterModal 
@@ -208,10 +207,6 @@ export default function SnackBoxContainer(props) {
                     /> */}
 
       </div>
-      <div>
-        <h3>SNACK-A-GEDDON</h3>
-      </div>
-
       <div className='SnackBoxContainer'>
         {boxArray && boxArray.map((el) => <SnackBox box={el} setLoginModal={props.setLoginModal} />)}
       </div>

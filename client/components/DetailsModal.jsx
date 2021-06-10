@@ -12,6 +12,7 @@ export default function DetailsModal(props) {
   const [stars, setStars] = useState(0);
   const [comments, setComments] = useState(null);
   const [info, setInfo] = useState(null);
+  const [commentButtonStatus, setCommentButtonStatus] = useState(false);
   //set state of login details for a user with username and password
 
   const setModalIsOpenToTrue = () => {
@@ -86,6 +87,11 @@ export default function DetailsModal(props) {
         setComments(data);
       });
   };
+
+  let commentButton = <button onClick={() => { seeComments(); setCommentButtonStatus(true); }}>See Comments</button>
+  if (commentButtonStatus) commentButton = <button onClick={() => { setComments(null); setCommentButtonStatus(false); }}>Hide Comments</button>
+
+
   //snack_id, snack_name, brand_name, origin, type, flavor_profile, rating, img
   return (
     <div>
@@ -122,7 +128,7 @@ export default function DetailsModal(props) {
             />
             <div className="commentButtons">
               <button onClick={addComment}>Add Comment</button>
-              <button onClick={seeComments}>See Comments</button>
+              {commentButton}
             </div>
           </div>
 
