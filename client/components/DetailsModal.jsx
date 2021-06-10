@@ -91,12 +91,13 @@ export default function DetailsModal(props) {
           <div>Origin: {props.box.origin}</div>
           <div>Flavor: {props.box.flavor_profile}</div>
           <Box component="fieldset" mb={3} borderColor="transparent">
-            <Typography component="legend"></Typography>
-            <Rating name="simple-controlled"
+            <Rating
+              name="simple-controlled"
               value={stars}
-              onChange={(event, newStars) => {
-                setStars(newStars);
-              }} />
+              onChange={(event, newValue) => {
+                setStars(newValue);
+              }}
+            />
           </Box>
           <input
             id={props.box.snack_id}
@@ -107,7 +108,7 @@ export default function DetailsModal(props) {
    
           <button onClick={seeComments}>See Comments</button>
 
-          <div>
+          <div className='Comments'>
             {comments &&
               comments.map((el) => (
                 <Comment
