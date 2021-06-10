@@ -18,7 +18,7 @@ export default function SnackBox(props) {
           <Typography component="legend"></Typography>
           <Rating
             name="read-only"
-            value={Math.round(parseInt(props.box.rating))}
+            value={props.box.rating}
             readOnly
           />
         </Box>

@@ -8,9 +8,6 @@ export default function LoginModal(props) {
   const [signupStatus, setSignupStatus] = useState(false);
   const [info, setInfo] = useState(null);
 
-  console.log(props.modalIsOpen)
-
-
   const login = () => {
     const username = document.getElementById("username"),
       password = document.getElementById("password");
