@@ -6,6 +6,7 @@ import SnackBoxContainer from './SnackBoxContainer.jsx'
 export default function MainPage() {
   const setLoggedIn = useSetLoggedInContext()
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
+  const [welcomeMsg, setWelcomeMsg] = useState('Welcome! Login to add a snack, or cruise through the edibles below');
 
   useEffect(() => {
     fetch('/user/verifySession')
@@ -14,11 +15,20 @@ export default function MainPage() {
         if (data.status) setLoggedIn(true);
       })
   }, [])
-  
-  return(
+
+
+  if (loggedIn) {
+    fetch('/user/getName')
+      .then(data => data.json())
+      .then(data => setWelcomeMsg(`Welcome ${data.username}... get your snack on!`));
+  }
+
+  return (
     <div>
-      <NavBar setLoginModal={setLoginModalIsOpen} modalIsOpen={loginModalIsOpen}/>
-      <SnackBoxContainer setLoginModal={setLoginModalIsOpen}/>
+      <div className='welcomeMsg'>{welcomeMsg}</div>
+      <NavBar setWelcomeMsg={setWelcomeMsg} setLoginModal={setLoginModalIsOpen} modalIsOpen={loginModalIsOpen} />
+      <SnackBoxContainer setLoginModal={setLoginModalIsOpen} />
     </div>
+
   )
 }

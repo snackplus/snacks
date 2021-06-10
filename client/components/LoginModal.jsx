@@ -60,7 +60,10 @@ export default function LoginModal(props) {
   const logout = () => {
     fetch('/user/logout', { method: 'POST', credentials: 'include' })
       .then(data => data.json())
-      .then(() => setLoggedIn(false))
+      .then(() => {
+        props.setWelcomeMsg('Welcome! Login to add a snack, or cruise through the edibles below')
+        setLoggedIn(false)
+      })
       .catch(err => console.log('ERROR LOGGING OUT: ', err))
   }
 

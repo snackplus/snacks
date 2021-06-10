@@ -8,9 +8,11 @@ export default function SnackBox(props) {
   return (
     <div className="SnackBox">
       <div key={props.box.snack_id}>
+        <div className='ImageDiv'>
         <img src={props.box.img} alt="delicious" />
-        <h3>
-          Snack: {props.box.brand_name} {props.box.snack_name}
+        </div>
+        <h3 className='WordWrap'>
+          {props.box.brand_name} {props.box.snack_name}
         </h3>
         <h4>Origin: {props.box.origin}</h4>
         <h4>Average Rating: {props.box.rating}</h4>
