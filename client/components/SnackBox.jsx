@@ -9,7 +9,6 @@ export default function SnackBox(props) {
     <div className="SnackBox">
       <div key={props.box.snack_id}>
         <img src={props.box.img} alt="delicious" />
-
         <h3>
           Snack: {props.box.brand_name} {props.box.snack_name}
         </h3>
@@ -23,17 +22,8 @@ export default function SnackBox(props) {
             readOnly
           />
         </Box>
-        <DetailsModal box={props.box} />
+        <DetailsModal box={props.box} setLoginModal={props.setLoginModal}/>
       </div>
     </div>
-    // <div key={props.key} id={props.id} className="snackBox">
-    //     <a href={props.image}></a>
-    //     <br/>
-    //     <h3>{props.brand}</h3>
-    //     {/* image, name, average star rating, number of reviews */}
-    //     <h3>{props.name}</h3>
-    //     <h4>{props.origin}</h4>
-
-    // </div>
   );
 }

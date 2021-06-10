@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useLoggedInContext } from './SnackContext.jsx';
 import Modal from "react-modal";
 import Comment from "./Comment.jsx";
 import Rating from "@material-ui/lab/Rating";
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
 //need to import context
 export default function DetailsModal(props) {
+  const isLoggedIn = useLoggedInContext();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [stars, setStars] = useState(0);
   const [comments, setComments] = useState(null);
+  const [info, setInfo] = useState(null);
   //set state of login details for a user with username and password
 
   const setModalIsOpenToTrue = () => {
@@ -51,11 +53,16 @@ export default function DetailsModal(props) {
   };
 
   const addComment = () => {
-    let input = document.getElementById(props.box.snack_id).value;
+    if (!isLoggedIn)  { setModalIsOpenToFalse(); props.setLoginModal(true); return; }
+
+    console.log('adding comment')
+
+    let input = document.getElementById(props.box.snack_id);
+
+    if (!stars) return setInfo('Add a rating!');
+    if (input.value === '') return setInfo('Add your review!');
     
-    let inputted_rating = stars;
-    console.log("inputtedrating: ", inputted_rating);
-    let username = "username";
+    console.log("inputtedrating: ", stars);
 
     fetch("/snack/addSnackComment", {
       method: "POST",
@@ -64,13 +71,15 @@ export default function DetailsModal(props) {
       },
       body: JSON.stringify({
         snack_id: props.box.snack_id,
-        user_id: username,
-        rating: inputted_rating,
-        comment: input,
+        rating: stars,
+        comment: input.value,
       }),
     })
       .then((res) => res.json())
-      .then((data) => setComments(data));
+      .then((data) => {
+        if (data.status) return setInfo('Already reviewed!');
+        input.value = ''; setComments(data);
+      });
   };
   //snack_id, snack_name, brand_name, origin, type, flavor_profile, rating, img
   return (
@@ -118,6 +127,7 @@ export default function DetailsModal(props) {
                 />
               ))}
           </div>
+          <div className='detailsInfo'>{info}</div>
         </div>
       </Modal>
     </div>
