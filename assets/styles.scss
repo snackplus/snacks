@@ -58,6 +58,9 @@ img #logoImage {
 .ImageDiv {
   min-height: 200px;
   min-width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .addSnackContainer {
