@@ -49,17 +49,17 @@ export default function SnackBoxContainer(props) {
   const filterBoxes = (queryArray) => {
     const searchQuery = document.getElementById("searchId").value;
     //check if queryArray
-      //if it is then use the searchQuery input field otherwise use the normal array (filter option)
-    if(queryArray.type === 'click') {
+    //if it is then use the searchQuery input field otherwise use the normal array (filter option)
+    if (queryArray.type === 'click') {
       queryArray = searchQuery.toLowerCase().split(' ')
     }
     console.log('query array ', queryArray)
     let filteredBoxes = [];
     console.log('box array', boxArray)
-    if(queryArray.length === 0 || queryArray[0] === ""){
+    if (queryArray.length === 0 || queryArray[0] === "") {
       filteredBoxes = boxArray;
-    } 
-    else if((queryArray[0] === "Top" || queryArray[0] === "Least") && queryArray.length === 1){
+    }
+    else if ((queryArray[0] === "Top" || queryArray[0] === "Least") && queryArray.length === 1) {
       filteredBoxes = boxArray;
     }
     else {
@@ -67,8 +67,8 @@ export default function SnackBoxContainer(props) {
         let stringOfPossibles = `${el.snack_name} ${el.brand_name} ${el.origin} ${el.type} ${el.flavor_profile}`;
         let arrayOfPossibles = stringOfPossibles.toLocaleLowerCase().split(' ');
         let pass = false;
-        for (let i = 0; i < queryArray.length; i += 1){
-          if (arrayOfPossibles.includes(queryArray[i])){
+        for (let i = 0; i < queryArray.length; i += 1) {
+          if (arrayOfPossibles.includes(queryArray[i])) {
             pass = true
           }
         }
@@ -77,10 +77,10 @@ export default function SnackBoxContainer(props) {
     }
     console.log('before sort ', filteredBoxes)
     //query array has more than one argument to be filtered
-    if(queryArray.includes('Top')){
+    if (queryArray.includes('Top')) {
       filteredBoxes.sort((a, b) => b.rating - a.rating)
     }
-    if(queryArray.includes('Least')){
+    if (queryArray.includes('Least')) {
       filteredBoxes.sort((a, b) => a.rating - b.rating)
     }
 
@@ -100,8 +100,8 @@ export default function SnackBoxContainer(props) {
       .catch(err => console.log('error in clear filters', err))
   }
 
-  let filterOrClear = <button onClick={filterBoxes}>Search</button>
-  if (filter) filterOrClear = <button onClick={clearFilters}>Clear Filters</button>
+  let filterOrClear = <button className="searchButton" onClick={filterBoxes}>Search</button>
+  if (filter) filterOrClear = <button className="searchButton" onClick={clearFilters}>Clear Filters</button>
   const customStyles = {
     content: {
       top: "50%",
@@ -117,8 +117,8 @@ export default function SnackBoxContainer(props) {
     e.preventDefault();
     let array = []
     const elements = document.getElementById('filterForm').children;
-    for (let i = 0; i < elements.length; i += 1){
-      if (elements[i].checked){
+    for (let i = 0; i < elements.length; i += 1) {
+      if (elements[i].checked) {
         array.push(elements[i].defaultValue)
       }
     }
@@ -126,6 +126,7 @@ export default function SnackBoxContainer(props) {
     console.log('array of checked?', array)
     setFilter(true)
     filterBoxes(array)
+    setModalIsOpenToFalse();
   }
 
   const flavorChange = (event) => {
@@ -139,73 +140,75 @@ export default function SnackBoxContainer(props) {
   return (
     <div>
       <div className='SnackBoxContainerLabel'>
-        <input id="searchId" className="Search" type="text" />
-        
-        {filterOrClear}
-        <button onClick={setModalIsOpenToTrue}>Filter</button>
-      <Modal
-        style={customStyles}
-        isOpen={modalIsOpen}
-        onRequestClose={setModalIsOpenToFalse}
-        appElement={document.getElementById("root")} //this is where the modal gets hung (is in relationto)
-      >
-        <div className="filterContainer">
-        
-        <form id='filterForm' action="">
-            <p>Flavor Profile:</p>
-            <input type="checkbox" id="sweet" name="sweet" value="sweet" />
-            <label htmlFor="sweet">Sweet</label>
-            <input type="checkbox" id="salty" name="salty" value="salty" />
-            <label htmlFor="salty">Salty</label>
-            <input type="checkbox" id="sour" name="sour" value="sour" />
-            <label htmlFor="sour">Sour</label>
-            <input type="checkbox" id="spicy" name="spicy" value="spicy" />
-            <label htmlFor="spicy">Spicy</label>
-            <input type="checkbox" id="bitter" name="bitter" value="bitter" />
-            <label htmlFor="bitter">Bitter</label>
-
-            <p>Type:</p>
-            <input type="checkbox" id="chips" name="chips" value="chips" />
-            <label htmlFor="chips">Chips</label><br />
-            <input type="checkbox" id="candy" name="candy" value="candy" />
-            <label htmlFor="candy">Candy</label><br />
-            <input type="checkbox" id="beverage" name="beverage" value="beverage" />
-            <label htmlFor="beverage">Beverage</label><br />
-            <input type="checkbox" id="fruit" name="fruit" value="fruit" />
-            <label htmlFor="fruit">Fruit</label><br />
-
-            <p>Sort Results By:</p>
-            
-            <FormControl className={classes.formControl}>
-            <InputLabel id="snackType">Choose:</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={type}
-              onChange={typeChange}
-            >
-              <MenuItem value={''}></MenuItem>
-              <MenuItem value={'Top'}>Top</MenuItem>
-              <MenuItem value={'Least'}>Least</MenuItem>
-
-            </Select>
-          </FormControl>
-
-            {/* <input type="submit" name="submit" onClick={handleClick} value="inputSubmit" /> */}
-            <button onClick={handleClick} id='filterInputButton'type="submit" value="Submit">Submit Your Filters</button>
-          </form>
+        <div className='FilterArea'>
+          <div>
+            <input id="searchId" className="Search" type="text" placeholder='What do you desire?' />
+          </div>
+          <div className='FilterButtons'>
+            {filterOrClear}
+            <button className="searchButton" onClick={setModalIsOpenToTrue}>Filter</button>
+          </div>
         </div>
-      </Modal>
+        <Modal
+          style={customStyles}
+          isOpen={modalIsOpen}
+          onRequestClose={setModalIsOpenToFalse}
+          appElement={document.getElementById("root")} //this is where the modal gets hung (is in relationto)
+        >
+          <div className="filterContainer">
+
+            <form className="filterForm" id='filterForm' action="">
+              <h3>Filters</h3>
+                <input type="checkbox" id="sweet" name="sweet" value="sweet" />
+                <label htmlFor="sweet">Sweet</label><br />
+                <input type="checkbox" id="salty" name="salty" value="salty" />
+                <label htmlFor="salty">Salty</label><br />
+                <input type="checkbox" id="sour" name="sour" value="sour" />
+                <label htmlFor="sour">Sour</label><br />
+                <input type="checkbox" id="spicy" name="spicy" value="spicy" />
+                <label htmlFor="spicy">Spicy</label><br />
+                <input type="checkbox" id="bitter" name="bitter" value="bitter" />
+                <label htmlFor="bitter">Bitter</label><br />
+
+
+                <input type="checkbox" id="chips" name="chips" value="chips" />
+                <label htmlFor="chips">Chips</label><br />
+                <input type="checkbox" id="candy" name="candy" value="candy" />
+                <label htmlFor="candy">Candy</label><br />
+                <input type="checkbox" id="beverage" name="beverage" value="beverage" />
+                <label htmlFor="beverage">Beverage</label><br />
+                <input type="checkbox" id="fruit" name="fruit" value="fruit" />
+                <label htmlFor="fruit">Fruit</label><br />
+
+              <FormControl className={classes.formControl}>
+                <InputLabel id="snackType">Sort Rating By:</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={type}
+                  onChange={typeChange}
+                >
+                  <MenuItem value={''}></MenuItem>
+                  <MenuItem value={'Top'}>Highest</MenuItem>
+                  <MenuItem value={'Least'}>Lowest</MenuItem>
+
+                </Select>
+              </FormControl>
+
+              {/* <input type="submit" name="submit" onClick={handleClick} value="inputSubmit" /> */}
+            </form>
+            <button onClick={handleClick} id='filterInputButton' type="submit" value="Submit">Submit Your Filters</button>
+          </div>
+        </Modal>
         {/* <FilterModal 
                     queryArray={query} 
                     setQueryArray={setQueryArray} 
                     filterBoxes={filterBoxes}
                     /> */}
 
-        <h3>SNACK-A-GEDDON</h3>
       </div>
       <div className='SnackBoxContainer'>
-      {boxArray && boxArray.map((el) => <SnackBox box={el} setLoginModal={props.setLoginModal}/>)}
+        {boxArray && boxArray.map((el) => <SnackBox box={el} setLoginModal={props.setLoginModal} />)}
       </div>
     </div>
   );

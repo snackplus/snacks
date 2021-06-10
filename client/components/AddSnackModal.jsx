@@ -36,16 +36,16 @@ export default function AddSnackModal(props) {
   const classes = useStyles()
 
   const customStyles = {
-      content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        backgroundColor: '#FFFAF1'
-      }
-    };
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      backgroundColor: '#FFFFFF'
+    }
+  };
 
 
 
@@ -79,13 +79,13 @@ export default function AddSnackModal(props) {
     fetch('/snack/add', reqObj)
       .then(res => res.json())
       .then(snacks => {
-         console.log(snacks)
+        console.log(snacks)
         //can we get back a single snack?
         //then add the returned new item and we'll add that to the array in
         setBoxArray(snacks)
       })
       .catch(err => console.log('error in AddSnack sendNewSnack', err))
-      setSnackModalIsOpen(false)
+    setSnackModalIsOpen(false)
   }
 
   const flavorChange = (event) => {
@@ -133,63 +133,49 @@ export default function AddSnackModal(props) {
         appElement={document.getElementById('root')} //this is where the modal gets hung (is in relationto)
       >
         <div className="addSnackContainer">
-          <button onClick={setModalIsOpenToFalse}>x</button>
-          {/* <br><br/> */}
-          <input id='snackImage' placeholder='Snack Image png/jpeg' />
-          <input id='brandName' placeholder='brand' />
-          {/* <br><br/> */}
-          <input id='snackName' placeholder='Snack Name' />
-          <input id='origin' placeholder='origin' />
-
+          <input className='addSnackInputs' id='snackImage' placeholder='Link to png/jpeg' />
+          <input className='addSnackInputs' id='brandName' placeholder='Brand Name' />
+          <input className='addSnackInputs' id='snackName' placeholder='Snack Name' />
+          <input className='addSnackInputs' id='origin' placeholder='Origin' />
           {/* Snack flavor drop down */}
-          <FormControl className={classes.formControl}>
-            <InputLabel id="flavorProfile">Flavor</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={flavor}
-              onChange={flavorChange}
-            >
-              <MenuItem value={'Sweet'}>Sweet</MenuItem>
-              <MenuItem value={'Salty'}>Salty</MenuItem>
-              <MenuItem value={'Spicy'}>Spicy</MenuItem>
-              <MenuItem value={'Sour'}>Sour</MenuItem>
-              <MenuItem value={'Bitter'}>Bitter</MenuItem>
-            </Select>
-          </FormControl>
+          <div className="formControls">
+
+            <FormControl className={classes.formControl}>
+              <InputLabel id="flavorProfile">Flavor</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={flavor}
+                onChange={flavorChange}
+              >
+                <MenuItem value={'Sweet'}>Sweet</MenuItem>
+                <MenuItem value={'Salty'}>Salty</MenuItem>
+                <MenuItem value={'Spicy'}>Spicy</MenuItem>
+                <MenuItem value={'Sour'}>Sour</MenuItem>
+                <MenuItem value={'Bitter'}>Bitter</MenuItem>
+              </Select>
+            </FormControl>
 
 
-          {/* Snack Type drop down */}
-          <FormControl className={classes.formControl}>
-            <InputLabel id="snackType">Type</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={type}
-              onChange={typeChange}
-            >
-              <MenuItem value={'Chips'}>Chips</MenuItem>
-              <MenuItem value={'Candy'}>Candy</MenuItem>
-              <MenuItem value={'Beverage'}>Beverage</MenuItem>
-              <MenuItem value={'Fruit'}>Fruit</MenuItem>
-              <MenuItem value={'Tacos'}>Tacos</MenuItem>
-
-            </Select>
-          </FormControl>
-
-          {/* //name, brand name, img, origin, type, flavor profile(spicy, sweet, salty), rating,   */}
-
-          <Box component="fieldset" mb={3} borderColor="transparent">
-            <Typography component="legend"></Typography>
-            <Rating
-              name="simple-controlled"
-              value={stars}
-              onChange={(event, newStars) => {
-                setStars(newStars);
-              }}
-            />
-          </Box>
+            {/* Snack Type drop down */}
+            <FormControl className={classes.formControl}>
+              <InputLabel id="snackType">Type</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={type}
+                onChange={typeChange}
+              >
+                <MenuItem value={'Chips'}>Chips</MenuItem>
+                <MenuItem value={'Candy'}>Candy</MenuItem>
+                <MenuItem value={'Beverage'}>Beverage</MenuItem>
+                <MenuItem value={'Fruit'}>Fruit</MenuItem>
+                <MenuItem value={'Tacos'}>Tacos</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
           <button onClick={() => sendNewSnack()}>Submit New Snack!</button>
+          <button onClick={setModalIsOpenToFalse}>x</button>
         </div>
 
       </Modal>

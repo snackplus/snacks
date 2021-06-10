@@ -33,7 +33,12 @@ export default function Comment(props) {
     };
 
   const addReply = () => {
-
+    const reply = document.getElementById(`replyInput${props.comment_id}`).value
+    document.getElementById(`replyInput${props.comment_id}`).value = '';
+    console.log('addreply, ', reply)
+    console.log('comment_id, ', props.comment_id)
+    if(reply === '') return;
+    
     fetch("/comment/commentReply", {
       method: "POST",
       headers: {
@@ -41,7 +46,7 @@ export default function Comment(props) {
       },
       body: JSON.stringify({
         comment_id: props.comment_id,
-        // reply:
+        reply: reply
       }),
     })
       .then((res) => res.json())
@@ -54,12 +59,11 @@ export default function Comment(props) {
 
     return (
       <div>
-        <div>Username: {props.username}</div>
-        <div>Rating: {props.rating}</div>
-        <div>Comment: {props.comment}</div>
+        <div>Username: {props.username} Rating: {props.rating}</div>
+        <div>{props.comment}</div>
         <button onClick={seeReplies}>View Replies</button>
         <button onClick={addReply}>Reply</button>
-        <input type="text"/>
+        <input id={`replyInput${props.comment_id}`} type="text" placeholder={`Reply to ${props.username}`}/>
       {/* {if (addReply) } */}
         {/* {asdfadf} */}
         <div className='Replies'>

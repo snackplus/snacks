@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 
+@import url('https://fonts.googleapis.com/css2?family=Modak&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
 
 body{
   // background-color: #FFFAF1;
@@ -14,7 +19,7 @@ body{
 }
 
 button {
-  background-color: rgb(167, 58, 58);
+  background-color: rgb(222, 96, 96);
   color: white;
   border-radius: 7px;
   font-family: Staatliches, cursive;
@@ -36,9 +41,26 @@ img {
   min-height: 150px;
 }
 
+.Logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img #logoImage {
+  position: relative;
+  bottom: 25px;
+  width: 800px;
+  height: 300px;
+}
+
+
 .ImageDiv {
   min-height: 200px;
   min-width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .addSnackContainer {
@@ -59,25 +81,27 @@ img {
   display: flex;
   justify-content: center;
   align-items: space-around;
-  word-wrap: break-word;
   border: 2px solid rgb(167, 58, 58);
   border-radius: 7px;
   padding: 20px;
   margin: 10px 10px;
   box-shadow: 2px 2px 5px rgb(206, 185, 185);;
   background: white;
+  color: rgb(222, 96, 96);
   height: 450px;
 }
 
 .welcomeMsg {
   display: flex;
-  justify-content: flex-end;
-  font-size: 20px;
+  justify-content: center;
+  font-size: 35px;
+  color: rgb(222, 96, 96);
 }
 
-.WordWrap h3 {
+.WordWrap {
   word-wrap: break-word;
-
+  max-width: 200px;
+  justify-content: center;
 }
 
 .SnackBoxContainerLabel {
@@ -98,14 +122,128 @@ img {
 
   // align-items: space-between;
 }
-.SearchContainer {
+
+.ratingStars {
+  max-height: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: center;
+}
+.ratingValue {
+  margin-top: 13px;
+  padding: 0px;
+}
+
+.search {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: .5em;
+  border-color: rgb(222, 96, 96);
+  border-style: solid;
+  width: 500px;
+  // max-width: 500px;
+  height: 50px;
+  opacity: 80%;
+  border-radius: 30px;
+  font-size: 25px;
+  text-align: center;
 }
+.search:focus {
+  outline: none;
+}
+
+.detailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.commentInputButtons{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
 .Comments {
   height: 120px;
   overflow: auto;
+}
+
+.FilterArea {
+  #input {
+    border-color: rgb(222, 96, 96);
+    border-style: solid;
+    
+  }
+}
+.FilterButtons {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px;
+  padding: 0;
+}
+.filterForm{
+
+}
+
+.checks{
+  display: flex;
+  flex-direction: row;
+}
+
+.searchButton {
+  font-size: 20px;
+  height: 50px;
+  width: 80px;
+  padding: 0;
+}
+
+.searchButton:focus {
+  outline: none;
+}
+
+.addSnackContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #ffffff;
+
+}
+
+.addSnackInputs {
+  border-radius: 5px;
+  border-color:rgb(222, 96, 96);
+  height: 20px; 
+  margin: 20px;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.Reply{
+  margin-left: 20px;
+}
+
+.formControls {
+  display: flex;
+  flex-direction: row;
+}
+.LoginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #ffffff;
+}
+.LoginInput {
+  border-radius: 5px;
+  border-color:rgb(222, 96, 96);
+  height: 20px; 
+  margin: 20px;
+  padding: 20px;
+  font-size: 20px;
 }
 
 #loginButton {
@@ -122,8 +260,14 @@ img {
 display: flex;
 justify-content: center;
 align-items: center;
-font-size: 40px;
+font-size: 45px;
 text-shadow: 2px 2px 5px rgb(181, 88, 88);
-font-style: italic;
+font-family: 'Bungee Shade', cursive;
 color: rgb(222, 96, 96)
+}
+
+#title {
+  margin-bottom: 30px;
+  margin-top: 0px;
+  padding-top: 0px;
 }

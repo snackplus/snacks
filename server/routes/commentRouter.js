@@ -17,6 +17,11 @@ commentRouter.post('/getReply', replyController.getReplies, (req, res) => {
     res.status(200).json(res.locals.reps);
 });
 
+// commentRouter.post('/getUsername', cookieController.getUserFromSSID, replyController.addReply, replyController.getReplies, (req, res) => {
+//     res.status(200).json(res.locals.reps);
+//     // res.status(200).json(res.locals.username)
+// });
+
 commentRouter.post('/commentReply', cookieController.getUserFromSSID, replyController.addReply, replyController.getReplies, (req, res) => {
     res.status(200).json(res.locals.reps);
     // res.status(200).json(res.locals.username)

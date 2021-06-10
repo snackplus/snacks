@@ -12,6 +12,7 @@ export default function DetailsModal(props) {
   const [stars, setStars] = useState(0);
   const [comments, setComments] = useState(null);
   const [info, setInfo] = useState(null);
+  const [commentButtonStatus, setCommentButtonStatus] = useState(false);
   //set state of login details for a user with username and password
 
   const setModalIsOpenToTrue = () => {
@@ -56,7 +57,7 @@ export default function DetailsModal(props) {
   };
 
   const addComment = () => {
-    if (!isLoggedIn)  { setModalIsOpenToFalse(); props.setLoginModal(true); return; }
+    if (!isLoggedIn) { setModalIsOpenToFalse(); props.setLoginModal(true); return; }
 
     console.log('adding comment')
 
@@ -64,7 +65,7 @@ export default function DetailsModal(props) {
 
     if (!stars) return setInfo('Add a rating!');
     if (input.value === '') return setInfo('Add your review!');
-    
+
     console.log("inputtedrating: ", stars);
 
     fetch("/snack/addSnackComment", {
@@ -86,6 +87,11 @@ export default function DetailsModal(props) {
         setComments(data);
       });
   };
+
+  let commentButton = <button onClick={() => { seeComments(); setCommentButtonStatus(true); }}>See Comments</button>
+  if (commentButtonStatus) commentButton = <button onClick={() => { setComments(null); setCommentButtonStatus(false); }}>Hide Comments</button>
+
+
   //snack_id, snack_name, brand_name, origin, type, flavor_profile, rating, img
   return (
     <div>
@@ -96,14 +102,14 @@ export default function DetailsModal(props) {
         onRequestClose={setModalIsOpenToFalse}
         appElement={document.getElementById("root")} //this is where the modal gets hung (is in relationto)
       >
-        <div className="loginContainer">
-          <button onClick={setModalIsOpenToFalse}>x</button>
+        <button onClick={setModalIsOpenToFalse}>x</button>
+        <div className="detailContainer">
           <div>Brand: {props.box.brand_name}</div>
           <div>Name: {props.box.snack_name}</div>
           <img src={props.box.img} alt="delicious snack" />
-          <div>Rating: {props.box.rating}</div>
+          <div>Average Rating: {props.box.rating}</div>
           <div>Origin: {props.box.origin}</div>
-          <div>Flavor: {props.box.flavor_profile}</div>
+          <div>Flavor Profile: {props.box.flavor_profile}</div>
           <Box component="fieldset" mb={3} borderColor="transparent">
             <Rating
               name="simple-controlled"
@@ -113,14 +119,18 @@ export default function DetailsModal(props) {
               }}
             />
           </Box>
-          <input
-            id={props.box.snack_id}
-            className="addCommentClass"
-            type="text"
-          />
-          <button onClick={addComment}>Add Comment</button> 
-   
-          <button onClick={seeComments}>See Comments</button>
+          <div className="commentInputButtons">
+            <input
+              id={props.box.snack_id}
+              className="addCommentClass"
+              type="text"
+              placeholder="What say you?"
+            />
+            <div className="commentButtons">
+              <button onClick={addComment}>Add Comment</button>
+              {commentButton}
+            </div>
+          </div>
 
           <div className='Comments'>
             {comments &&

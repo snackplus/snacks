@@ -7,7 +7,7 @@ export default function MainPage() {
   const setLoggedIn = useSetLoggedInContext()
   const loggedIn = useLoggedInContext();
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
-  const [welcomeMsg, setWelcomeMsg] = useState('Welcome! Login to add a snack, or cruise through the edibles below');
+  const [welcomeMsg, setWelcomeMsg] = useState('Welcome! Log-in to add a snack, or cruise through the tasties below.');
 
   useEffect(() => {
     fetch('/user/verifySession')
@@ -26,6 +26,9 @@ export default function MainPage() {
 
   return (
     <div>
+      <div className='Logo'>
+        <img id='logoImage'src='../assets/Snackplus.png'></img>
+      </div>
       <div className='welcomeMsg'>{welcomeMsg}</div>
       <NavBar setWelcomeMsg={setWelcomeMsg} setLoginModal={setLoginModalIsOpen} modalIsOpen={loginModalIsOpen} />
       <SnackBoxContainer setLoginModal={setLoginModalIsOpen} />

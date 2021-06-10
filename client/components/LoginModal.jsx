@@ -61,8 +61,8 @@ export default function LoginModal(props) {
     fetch('/user/logout', { method: 'POST', credentials: 'include' })
       .then(data => data.json())
       .then(() => {
-        props.setWelcomeMsg('Welcome! Login to add a snack, or cruise through the edibles below')
         setLoggedIn(false)
+        props.setWelcomeMsg('Welcome! Log-in to add a snack, or cruise the tasty things below.')
       })
       .catch(err => console.log('ERROR LOGGING OUT: ', err))
   }
@@ -75,7 +75,7 @@ export default function LoginModal(props) {
     <button onClick={() => { setSignupStatus(true); setInfo(null); }}>Signup</button>
   </div>]
   if (signupStatus) signInOut = [<div>
-    <input id="confPassword" className='password' placeholder='Confirm Password' />
+    <input id="confPassword" className='password' type='password' placeholder='Confirm Password' />
     <button onClick={() => signup()}>Signup</button>
     <button onClick={() => { setSignupStatus(false); setInfo(null); }}>Back</button>
   </div>]
@@ -88,7 +88,7 @@ export default function LoginModal(props) {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      backgroundColor: "#FFFAF1",
+      backgroundColor: "#FFFFF",
     },
   };
 
@@ -101,12 +101,12 @@ export default function LoginModal(props) {
         onRequestClose={() => props.setLoginModal(false)}
         appElement={document.getElementById("root")} //this is where the modal gets hung (is in relationto)
       >
-        <div className="loginContainer">
-          <button onClick={() => props.setLoginModal(false)}>x</button>
-          <input id="username" className="username" placeholder="UserName" />
-          <input id="password" className="password" placeholder="Password" />
+        <div className="LoginContainer">
+          <input className='LoginInput'id="username"placeholder="UserName"/>
+          <input className='LoginInput'id="password" type='password'placeholder="Password"/>
           {signInOut}
           <div className="loginSignupInfo">{info}</div>
+          <button onClick={() => props.setLoginModal(false)}>x</button>
         </div>
       </Modal>
     </div>
