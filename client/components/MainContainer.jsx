@@ -7,7 +7,7 @@ export default function MainPage() {
   const setLoggedIn = useSetLoggedInContext()
   const loggedIn = useLoggedInContext();
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
-  const [welcomeMsg, setWelcomeMsg] = useState('Welcome! Login to add a snack, or cruise through the edibles below');
+  const [welcomeMsg, setWelcomeMsg] = useState('Welcome! Log-in to add a snack, or cruise through the tasties below.');
 
   useEffect(() => {
     fetch('/user/verifySession')

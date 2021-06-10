@@ -56,7 +56,7 @@ export default function DetailsModal(props) {
   };
 
   const addComment = () => {
-    if (!isLoggedIn)  { setModalIsOpenToFalse(); props.setLoginModal(true); return; }
+    if (!isLoggedIn) { setModalIsOpenToFalse(); props.setLoginModal(true); return; }
 
     console.log('adding comment')
 
@@ -64,7 +64,7 @@ export default function DetailsModal(props) {
 
     if (!stars) return setInfo('Add a rating!');
     if (input.value === '') return setInfo('Add your review!');
-    
+
     console.log("inputtedrating: ", stars);
 
     fetch("/snack/addSnackComment", {
@@ -96,14 +96,14 @@ export default function DetailsModal(props) {
         onRequestClose={setModalIsOpenToFalse}
         appElement={document.getElementById("root")} //this is where the modal gets hung (is in relationto)
       >
-        <div className="loginContainer">
-          <button onClick={setModalIsOpenToFalse}>x</button>
+        <button onClick={setModalIsOpenToFalse}>x</button>
+        <div className="detailContainer">
           <div>Brand: {props.box.brand_name}</div>
           <div>Name: {props.box.snack_name}</div>
           <img src={props.box.img} alt="delicious snack" />
-          <div>Rating: {props.box.rating}</div>
+          <div>Average Rating: {props.box.rating}</div>
           <div>Origin: {props.box.origin}</div>
-          <div>Flavor: {props.box.flavor_profile}</div>
+          <div>Flavor Profile: {props.box.flavor_profile}</div>
           <Box component="fieldset" mb={3} borderColor="transparent">
             <Rating
               name="simple-controlled"
@@ -113,14 +113,18 @@ export default function DetailsModal(props) {
               }}
             />
           </Box>
-          <input
-            id={props.box.snack_id}
-            className="addCommentClass"
-            type="text"
-          />
-          <button onClick={addComment}>Add Comment</button> 
-   
-          <button onClick={seeComments}>See Comments</button>
+          <div className="commentInputButtons">
+            <input
+              id={props.box.snack_id}
+              className="addCommentClass"
+              type="text"
+              placeholder="What say you?"
+            />
+            <div className="commentButtons">
+              <button onClick={addComment}>Add Comment</button>
+              <button onClick={seeComments}>See Comments</button>
+            </div>
+          </div>
 
           <div className='Comments'>
             {comments &&
