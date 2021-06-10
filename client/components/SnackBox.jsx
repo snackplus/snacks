@@ -16,7 +16,11 @@ export default function SnackBox(props) {
         <h4>Average Rating: {props.box.rating}</h4>
         <Box component="fieldset" borderColor="transparent">
           <Typography component="legend"></Typography>
-          <Rating name="read-only" value={parseInt(props.box.rating)} readOnly />
+          <Rating
+            name="read-only"
+            value={Math.round(parseInt(props.box.rating))}
+            readOnly
+          />
         </Box>
         <DetailsModal box={props.box} setLoginModal={props.setLoginModal}/>
       </div>
