@@ -165,9 +165,8 @@ export default function AddSnackModal(props) {
             >
               <MenuItem value={'Chips'}>Chips</MenuItem>
               <MenuItem value={'Candy'}>Candy</MenuItem>
-              <MenuItem value={'Jake'}>Jake</MenuItem>
+              <MenuItem value={'Beverage'}>Beverage</MenuItem>
               <MenuItem value={'Fruit'}>Fruit</MenuItem>
-              <MenuItem value={'FruitSnacks'}>FruitSnacks</MenuItem>
               <MenuItem value={'Tacos'}>Tacos</MenuItem>
 
             </Select>
