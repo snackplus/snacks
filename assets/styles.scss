@@ -131,7 +131,16 @@ img {
 }
 
 .FilterArea {
-
+  #input {
+    border-color: rgb(222, 96, 96);
+    border-style: solid;
+    
+  }
+}
+.FilterButtons {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
 }
 
 #loginButton {
@@ -159,5 +168,6 @@ color: rgb(222, 96, 96)
   height: 50px;
   border-radius: 30px;
   font-size: 25px;
+  
   border-color: 5px rgb(222, 96, 96);
 }

@@ -54,9 +54,8 @@ export default function Comment(props) {
 
     return (
       <div>
-        <div>Username: {props.username}</div>
-        <div>Rating: {props.rating}</div>
-        <div>Comment: {props.comment}</div>
+        <div>Username: {props.username} Rating: {props.rating}</div>
+        <div>{props.comment}</div>
         <button onClick={seeReplies}>View Replies</button>
         <button onClick={addReply}>Reply</button>
         <input type="text"/>

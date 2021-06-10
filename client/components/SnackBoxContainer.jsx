@@ -143,7 +143,7 @@ export default function SnackBoxContainer(props) {
           <div>
             <input id="searchId" className="Search" type="text" placeHolder='Something Quirky'/>
           </div>
-          <div>
+          <div className='FilterButtons'>
             {filterOrClear}
             <button onClick={setModalIsOpenToTrue}>Filter</button>
           </div>
