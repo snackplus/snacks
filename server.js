@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 const cookieParser = require('cookie-parser');
 // Server port
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //** Data Parsing **//
 app.use(express.json());
@@ -30,6 +30,42 @@ app.use('/user', userRouter);
 app.use('/snack', snackRouter);
 app.use('/comment', commentRouter);
 
+
+//homepage snacklist render
+//('/', snackController.getSnacks)
+//res.locals.snacks
+
+//user adds a new snack
+//('/addSnack', snackController.addSnack, snackController.getSnacks)
+
+//admin deletes a snack
+//('/delSnack', snackController.delSnack, snackController.getSnacks)
+
+//==================================================
+
+//user comments a rating on a snack
+//('/rateSnack', commentController.addComment, snackController.updateRating)
+
+//user deletes a comment 
+//('/delComment', commentController.delComment, snackController.updateRating)
+
+//==================================================
+
+//user replies to a comment
+//('/commentReply', replyController.addReply, replyController.getReplies)
+
+//user deletes reply to a comment
+//('/replyDel', replyController.delReply, replyController.getReplies)
+
+//==================================================
+
+//user opens comment list of a snack
+//('/openComments', commentController.getComments)
+//res.locals.comments
+
+//user opens replies list of a comment
+//('/openReplies', replyController.getReplies)
+//res.locals.replies
 
 
 //** No Route / 404 Handling **//

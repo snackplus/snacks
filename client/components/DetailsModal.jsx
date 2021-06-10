@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLoggedInContext } from './SnackContext.jsx';
 import Modal from "react-modal";
 import Comment from "./Comment.jsx";
@@ -84,9 +84,6 @@ export default function DetailsModal(props) {
         input.value = '';
         setInfo(null);
         setComments(data);
-        fetch("/snack/")
-        .then((res) => res.json())
-        .then((data) => setBoxArray(data));
       });
   };
   //snack_id, snack_name, brand_name, origin, type, flavor_profile, rating, img
@@ -132,6 +129,7 @@ export default function DetailsModal(props) {
                   username={el.user_id}
                   rating={el.rating}
                   comment={el.comment}
+                  comment_id={el.comment_id}
                 />
               ))}
           </div>
