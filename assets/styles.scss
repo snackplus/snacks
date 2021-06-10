@@ -30,8 +30,15 @@ button:hover {
 }
 
 img {
-  width: 200px;
-  
+  max-width: 200px;
+  max-height: 200px;
+  min-width: 150px;
+  min-height: 150px;
+}
+
+.ImageDiv {
+  min-height: 200px;
+  min-width: 200px;
 }
 
 .addSnackContainer {
@@ -49,13 +56,27 @@ img {
   border: 2px black;
 }
 .SnackBox {
+  display: flex;
+  justify-content: center;
+  align-items: space-around;
+  word-wrap: break-word;
   border: 2px solid rgb(167, 58, 58);
   border-radius: 7px;
   padding: 20px;
   margin: 10px 10px;
   box-shadow: 2px 2px 5px rgb(206, 185, 185);;
   background: white;
-  height: 400px;
+  height: 450px;
+}
+
+.welcomeMsg {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 20px;
+}
+
+.WordWrap h3 {
+  word-wrap: break-word;
 }
 
 .SnackBoxContainerLabel {
@@ -70,7 +91,7 @@ img {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  height: 600px;
+  height: 1200px;
   overflow: auto;
   // align-items: space-between;
 }

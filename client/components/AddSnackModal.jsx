@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import LoginModal from './LoginModal.jsx'
 import Modal from 'react-modal';
 import { useLoggedInContext } from './SnackContext.jsx'
+import { useSnackArrayContext, setSnackArrayContext } from "./SnackContext.jsx";
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -27,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddSnackModal(props) {
+  const boxArray = useSnackArrayContext();
+  const setBoxArray = setSnackArrayContext();
   const isLoggedIn = useLoggedInContext()
   const [snackModalIsOpen, setSnackModalIsOpen] = useState(false);
   const [stars, setStars] = useState(2);
@@ -78,9 +81,13 @@ export default function AddSnackModal(props) {
     fetch('/snack/add', reqObj)
       .then(res => res.json())
       .then(snacks => {
+         console.log(snacks)
         //can we get back a single snack?
         //then add the returned new item and we'll add that to the array in
+        setBoxArray(snacks)
       })
+      .catch(err => console.log('error in AddSnack sendNewSnack', err))
+      setSnackModalIsOpen(false)
   }
 
   const flavorChange = (event) => {
