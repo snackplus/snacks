@@ -35,6 +35,10 @@ export default function DetailsModal(props) {
     },
   };
 
+  const hideComments = () => {
+    
+  }
+
   //snack_id, user_id, rating, comment, comment_id(DEFAULT)
   const seeComments = () => {
     //get all of the comments on load

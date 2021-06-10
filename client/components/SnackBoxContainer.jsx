@@ -100,8 +100,8 @@ export default function SnackBoxContainer(props) {
       .catch(err => console.log('error in clear filters', err))
   }
 
-  let filterOrClear = <button onClick={filterBoxes}>Search</button>
-  if (filter) filterOrClear = <button onClick={clearFilters}>Clear Filters</button>
+  let filterOrClear = <button className="searchButton" onClick={filterBoxes}>Search</button>
+  if (filter) filterOrClear = <button className="searchButton" onClick={clearFilters}>Clear Filters</button>
   const customStyles = {
     content: {
       top: "50%",
@@ -141,11 +141,11 @@ export default function SnackBoxContainer(props) {
       <div className='SnackBoxContainerLabel'>
         <div className='FilterArea'>
           <div>
-            <input id="searchId" className="Search" type="text" placeHolder='Something Quirky'/>
+            <input id="searchId" className="Search" type="text" placeHolder='What do you desire?'/>
           </div>
           <div className='FilterButtons'>
             {filterOrClear}
-            <button onClick={setModalIsOpenToTrue}>Filter</button>
+            <button className="searchButton" onClick={setModalIsOpenToTrue}>Filter</button>
           </div>
         </div>
         <Modal
@@ -182,7 +182,7 @@ export default function SnackBoxContainer(props) {
               <p>Sort Results By:</p>
 
               <FormControl className={classes.formControl}>
-                <InputLabel id="snackType">Choose:</InputLabel>
+                <InputLabel id="snackType">Rating:</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -190,8 +190,8 @@ export default function SnackBoxContainer(props) {
                   onChange={typeChange}
                 >
                   <MenuItem value={''}></MenuItem>
-                  <MenuItem value={'Top'}>Top</MenuItem>
-                  <MenuItem value={'Least'}>Least</MenuItem>
+                  <MenuItem value={'Top'}>Highest</MenuItem>
+                  <MenuItem value={'Least'}>Lowest</MenuItem>
 
                 </Select>
               </FormControl>

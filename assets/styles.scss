@@ -105,11 +105,23 @@ img {
 
   // align-items: space-between;
 }
-.SearchContainer {
+.search {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(222, 96, 96);
+  margin-top: .5em;
+  border-color: rgb(222, 96, 96);
+  border-style: solid;
+  width: 500px;
+  // max-width: 500px;
+  height: 50px;
+  opacity: 80%;
+  border-radius: 30px;
+  font-size: 25px;
+  text-align: center;
+}
+.search:focus {
+  outline: none;
 }
 
 .detailContainer {
@@ -139,8 +151,52 @@ img {
 }
 .FilterButtons {
   display: flex;
-  justify-content: center;
-  margin: 50px;
+  justify-content: space-evenly;
+  margin: 30px;
+  padding: 0;
+}
+
+.searchButton {
+  font-size: 20px;
+  height: 50px;
+  width: 80px;
+  padding: 0;
+}
+
+.addSnackContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #ffffff;
+
+}
+
+.addSnackInputs {
+  border-radius: 5px;
+  border-color:rgb(222, 96, 96);
+  height: 20px; 
+  margin: 20px;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.formControls {
+  display: flex;
+  flex-direction: row;
+}
+.LoginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #ffffff;
+}
+.LoginInput {
+  border-radius: 5px;
+  border-color:rgb(222, 96, 96);
+  height: 20px; 
+  margin: 20px;
+  padding: 20px;
+  font-size: 20px;
 }
 
 #loginButton {
@@ -161,13 +217,4 @@ font-size: 60px;
 text-shadow: 2px 2px 5px rgb(181, 88, 88);
 font-family: 'Bungee Shade', cursive;
 color: rgb(222, 96, 96)
-}
-
-#searchId {
-  width: 500px;
-  height: 50px;
-  border-radius: 30px;
-  font-size: 25px;
-  
-  border-color: 5px rgb(222, 96, 96);
 }

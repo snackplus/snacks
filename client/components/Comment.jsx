@@ -59,7 +59,7 @@ export default function Comment(props) {
         <div>{props.comment}</div>
         <button onClick={seeReplies}>View Replies</button>
         <button onClick={addReply}>Reply</button>
-        <input id="replyInput" type="text"/>
+        <input id="replyInput" type="text" placeholder={`Reply to ${props.username}`}/>
       {/* {if (addReply) } */}
         {/* {asdfadf} */}
         <div className='Replies'>
