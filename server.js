@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 const cookieParser = require('cookie-parser');
 // Server port
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //** Data Parsing **//
 app.use(express.json());

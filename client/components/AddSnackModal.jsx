@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import LoginModal from './LoginModal.jsx'
 import Modal from 'react-modal';
 import { useLoggedInContext } from './SnackContext.jsx'
 import Rating from '@material-ui/lab/Rating';
@@ -9,7 +8,6 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
