@@ -55,6 +55,7 @@ img {
   margin: 10px 10px;
   box-shadow: 2px 2px 5px rgb(206, 185, 185);;
   background: white;
+  height: 400px;
 }
 
 .SnackBoxContainerLabel {
@@ -69,8 +70,8 @@ img {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  height: 400px;
-
+  height: 600px;
+  overflow: auto;
   // align-items: space-between;
 }
 .SearchContainer {

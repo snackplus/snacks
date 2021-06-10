@@ -22,8 +22,6 @@ export default function MainPage() {
   return(
     <div>
       <NavBar setLoginModal={setLoginModalIsOpen} modalIsOpen={loginModalIsOpen}/>
-      <div>This is the Main Page and you are logged in: {string} </div>
-      <button onClick={setLoggedIn}>Click it</button>
       <SnackBoxContainer setLoginModal={setLoginModalIsOpen}/>
     </div>
     
