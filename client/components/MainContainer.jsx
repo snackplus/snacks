@@ -4,7 +4,6 @@ import { useLoggedInContext, useSetLoggedInContext } from './SnackContext.jsx'
 import SnackBoxContainer from './SnackBoxContainer.jsx'
 
 export default function MainPage() {
-  const loggedIn = useLoggedInContext()
   const setLoggedIn = useSetLoggedInContext()
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
 
@@ -21,6 +20,5 @@ export default function MainPage() {
       <NavBar setLoginModal={setLoginModalIsOpen} modalIsOpen={loginModalIsOpen}/>
       <SnackBoxContainer setLoginModal={setLoginModalIsOpen}/>
     </div>
-    
   )
 }
