@@ -15,10 +15,7 @@ export default function MainPage() {
         if (data.status) setLoggedIn(true);
       })
   }, [])
-
-  let string = loggedIn ? 'true' : 'false';
   
-  console.log(loginModalIsOpen)
   return(
     <div>
       <NavBar setLoginModal={setLoginModalIsOpen} modalIsOpen={loginModalIsOpen}/>
