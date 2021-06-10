@@ -6,10 +6,9 @@ export default function CommentReply(props) {
     return (
     <div className='Reply'>
       <div>
-        <div>Username: {props.username}</div>
+        <div>Username: {props.current_user}</div>
         <div>Reply: {props.reply}</div>
-        <div>Reply_Id: {props.reply_id}</div>
-        <button>X</button>
+        <button id={props.reply_id}>Delete</button>
         <hr></hr>
       </div>
     </div>
