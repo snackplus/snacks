@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 
+@import url('https://fonts.googleapis.com/css2?family=Modak&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
 
 body{
   // background-color: #FFFAF1;
@@ -14,7 +19,7 @@ body{
 }
 
 button {
-  background-color: rgb(167, 58, 58);
+  background-color: rgb(222, 96, 96);
   color: white;
   border-radius: 7px;
   font-family: Staatliches, cursive;
@@ -59,25 +64,26 @@ img {
   display: flex;
   justify-content: center;
   align-items: space-around;
-  word-wrap: break-word;
   border: 2px solid rgb(167, 58, 58);
   border-radius: 7px;
   padding: 20px;
   margin: 10px 10px;
   box-shadow: 2px 2px 5px rgb(206, 185, 185);;
   background: white;
-
+  color: rgb(222, 96, 96);
   height: 450px;
 }
 
 .welcomeMsg {
   display: flex;
-  justify-content: flex-end;
-  font-size: 20px;
+  justify-content: center;
+  font-size: 35px;
+  color: rgb(222, 96, 96);
 }
 
-.WordWrap h3 {
+.WordWrap {
   word-wrap: break-word;
+  max-width: 200px;
 
 }
 
@@ -103,10 +109,29 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: rgb(222, 96, 96);
 }
+
+.detailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.commentInputButtons{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
 .Comments {
   height: 120px;
   overflow: auto;
+}
+
+.FilterArea {
+
 }
 
 #loginButton {
@@ -123,8 +148,16 @@ img {
 display: flex;
 justify-content: center;
 align-items: center;
-font-size: 40px;
+font-size: 60px;
 text-shadow: 2px 2px 5px rgb(181, 88, 88);
-font-style: italic;
+font-family: 'Bungee Shade', cursive;
 color: rgb(222, 96, 96)
+}
+
+#searchId {
+  width: 500px;
+  height: 50px;
+  border-radius: 30px;
+  font-size: 25px;
+  border-color: 5px rgb(222, 96, 96);
 }
