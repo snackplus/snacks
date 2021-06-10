@@ -9,14 +9,14 @@ body{
     linear-gradient(135deg, #e9dad9 50%, transparent 0) 0 0,
     linear-gradient(45deg, #f7e5e1 50%, #f7e5e1 0) 0 0 #cbb3b1;
     background-size: 20px 20px;
-  color: rgb(230, 93, 93);
+  color: black;
   font-family: Staatliches, cursive;
 }
 
 button {
-  background-color: rgb(222, 90, 90);
+  background-color: rgb(167, 58, 58);
   color: white;
-  border-radius: 35px;
+  border-radius: 7px;
   font-family: Staatliches, cursive;
   padding: 10px 20px;
   margin: 3px;
@@ -55,7 +55,6 @@ img {
   margin: 10px 10px;
   box-shadow: 2px 2px 5px rgb(206, 185, 185);;
   background: white;
-  height: 400px;
 }
 
 .SnackBoxContainerLabel {
@@ -70,14 +69,16 @@ img {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  height: 600px;
-  overflow: auto;
   // align-items: space-between;
 }
 .SearchContainer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.Comments {
+  height: 120px;
+  overflow: auto;
 }
 
 #loginButton {
@@ -94,8 +95,8 @@ img {
 display: flex;
 justify-content: center;
 align-items: center;
-font-size: 60px;
+font-size: 40px;
 text-shadow: 2px 2px 5px rgb(181, 88, 88);
 font-style: italic;
-color: rgb(230, 93, 93);
+color: rgb(222, 96, 96)
 }
