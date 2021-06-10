@@ -9,14 +9,14 @@ body{
     linear-gradient(135deg, #e9dad9 50%, transparent 0) 0 0,
     linear-gradient(45deg, #f7e5e1 50%, #f7e5e1 0) 0 0 #cbb3b1;
     background-size: 20px 20px;
-  color: black;
+  color: rgb(230, 93, 93);
   font-family: Staatliches, cursive;
 }
 
 button {
-  background-color: rgb(167, 58, 58);
+  background-color: rgb(222, 90, 90);
   color: white;
-  border-radius: 7px;
+  border-radius: 35px;
   font-family: Staatliches, cursive;
   padding: 10px 20px;
   margin: 3px;
@@ -79,10 +79,6 @@ img {
   justify-content: center;
   align-items: center;
 }
-.Comments {
-  height: 120px;
-  overflow: auto;
-}
 
 #loginButton {
   position: relative;
@@ -98,8 +94,8 @@ img {
 display: flex;
 justify-content: center;
 align-items: center;
-font-size: 40px;
+font-size: 60px;
 text-shadow: 2px 2px 5px rgb(181, 88, 88);
 font-style: italic;
-color: rgb(222, 96, 96)
+color: rgb(230, 93, 93);
 }
