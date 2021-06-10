@@ -5,6 +5,7 @@ import SnackBoxContainer from './SnackBoxContainer.jsx'
 
 export default function MainPage() {
   const setLoggedIn = useSetLoggedInContext()
+  const loggedIn = useLoggedInContext();
   const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
   const [welcomeMsg, setWelcomeMsg] = useState('Welcome! Login to add a snack, or cruise through the edibles below');
 
